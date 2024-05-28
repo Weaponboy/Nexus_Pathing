@@ -37,7 +37,7 @@ publishing {
 
             groupId = 'com.github.Weaponboy'
             artifactId = 'nexus'
-            version = '0.0.1'
+            version = 'v1.0.7'
         }
     }
 
