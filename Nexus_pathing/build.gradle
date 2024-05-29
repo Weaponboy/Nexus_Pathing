@@ -36,7 +36,7 @@ publishing {
             }
 
             groupId = 'com.github.Weaponboy'
-            artifactId = 'nexus'
+            artifactId = 'Nexus_pathing'
             version = 'v1.0.7'
         }
     }
