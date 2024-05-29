@@ -1,9 +1,10 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
+    id 'maven-publish'
 }
 
 android {
-    namespace 'dev.weaponboy.nexus'
+    namespace 'dev.weaponboy.nexus_pathing'
     compileSdk 33
 
     defaultConfig {
@@ -23,6 +24,27 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            // Use the 'release' component from the library variant
+            afterEvaluate {
+                from components.findByName("release")
+            }
+
+            groupId = 'com.github.Weaponboy'
+            artifactId = 'nexus'
+            version = 'v1.0.7'
+        }
+    }
+
+    repositories {
+        maven {
+            url = uri("file://${buildDir}/outputs/repo")
+        }
     }
 }
 
