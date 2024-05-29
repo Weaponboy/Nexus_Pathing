@@ -37,7 +37,9 @@ publishing {
 
             groupId = 'com.github.Weaponboy'
             artifactId = 'Nexus_pathing'
-            version = 'v2.0.2'
+            version = 'v2.0.3'
+
+            artifact("$buildDir/outputs/aar/nexus-release.aar")
         }
     }
 
