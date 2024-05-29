@@ -1,17 +1,41 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        google()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:8.0.0"
+    }
+}
+
 plugins {
-    id 'com.android.library'
     id 'maven-publish'
 }
 
+apply plugin: 'com.android.library'
+
+group 'org.mercurialftc.mercurialftc'
+version = 'v2.0.3'
+
 android {
     namespace 'dev.weaponboy.nexus_pathing'
-    compileSdk 33
+
+    compileSdkVersion 33
+//    buildToolsVersion '29.0.2'
+
+    lintOptions {
+        disable 'ExpiredTargetSdkVersion'
+    }
 
     defaultConfig {
-        minSdk 24
-        targetSdk 33
+        minSdkVersion 24
+        //noinspection ExpiredTargetSdkVersion
+        targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName 'v0.0.0'
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.debug
     }
 
     buildTypes {
@@ -20,40 +44,52 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
     }
-}
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            // Use the 'release' component from the library variant
-            afterEvaluate {
-                from components.findByName("release")
-            }
-
-            groupId = 'com.github.Weaponboy'
-            artifactId = 'Nexus_pathing'
-            version = 'v2.0.3'
-
-            artifact("$buildDir/outputs/aar/Nexus_pathing-release.aar")
-        }
-    }
-
-    repositories {
-        maven {
-            url = uri("file://${buildDir}/outputs/repo")
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
         }
     }
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testImplementation 'org.jetbrains:annotations:24.0.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+    testImplementation 'org.tomlj:tomlj:1.1.0'
+
+    compileOnly 'org.firstinspires.ftc:RobotCore:9.0.0'
+    compileOnly 'org.firstinspires.ftc:RobotServer:9.0.0'
+    compileOnly 'org.firstinspires.ftc:Hardware:9.0.0'
+    compileOnly 'org.firstinspires.ftc:FtcCommon:9.0.0'
+    compileOnly 'org.firstinspires.ftc:Vision:9.0.0'
+    compileOnly 'androidx.appcompat:appcompat:1.6.1'
+
+    implementation 'org.tomlj:tomlj:1.1.0'
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                groupId = 'com.github.Weaponboy'
+                artifactId = 'Nexus_pathing'
+                version = 'v2.0.3'
+
+                afterEvaluate {
+                    from components.findByName("release")
+                }
+            }
+        }
+        repositories {
+            maven {
+                name = 'Nexus'
+                url = "${project.buildDir}/release"
+            }
+        }
+    }
 }
