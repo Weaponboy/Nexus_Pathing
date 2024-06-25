@@ -14,8 +14,7 @@ plugins {
 
 apply plugin: 'com.android.library'
 
-group 'org.mercurialftc.mercurialftc'
-version = 'v2.0.3'
+version = 'v3.0.0'
 
 android {
     namespace 'dev.weaponboy.nexus_pathing'
@@ -89,8 +88,8 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 groupId = 'com.github.Weaponboy'
-                artifactId = 'Nexus_pathing'
-                version = 'v2.0.3'
+                artifactId = 'nexus_pathing'
+                version = 'v3.0.0'
 
                 afterEvaluate {
                     from components.findByName("release")
