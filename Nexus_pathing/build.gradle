@@ -14,7 +14,7 @@ plugins {
 
 apply plugin: 'com.android.library'
 
-version = 'v3.0.0'
+version = 'v5.1.0'
 
 android {
     namespace 'dev.weaponboy.nexus_pathing'
@@ -89,7 +89,7 @@ afterEvaluate {
             release(MavenPublication) {
                 groupId = 'com.github.Weaponboy'
                 artifactId = 'nexus_pathing'
-                version = 'v3.0.0'
+                version = 'v5.1.0'
 
                 afterEvaluate {
                     from components.findByName("release")
