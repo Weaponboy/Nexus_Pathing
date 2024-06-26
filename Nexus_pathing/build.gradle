@@ -20,7 +20,6 @@ android {
     namespace 'dev.weaponboy.nexus_pathing'
 
     compileSdkVersion 33
-//    buildToolsVersion '29.0.2'
 
     lintOptions {
         disable 'ExpiredTargetSdkVersion'
@@ -28,7 +27,6 @@ android {
 
     defaultConfig {
         minSdkVersion 24
-        //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 28
         versionCode 1
         versionName 'v0.0.0'
@@ -63,7 +61,7 @@ allprojects {
 
 repositories {
     mavenCentral()
-    google() // Needed for androidx
+    google()
 }
 
 dependencies {
@@ -91,8 +89,31 @@ afterEvaluate {
                 artifactId = 'nexus_pathing'
                 version = 'v5.1.0'
 
-                afterEvaluate {
-                    from components.findByName("release")
+                // Include the AAR artifact
+                artifact("$buildDir/outputs/aar/${project.name}-release.aar")
+
+                pom {
+                    name = 'nexus_pathing'
+                    description = 'Description of your library'
+                    url = 'http://www.example.com'
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'WeaponBoy'
+                            name = 'Josh Anderson'
+                            email = 'weaponboy@example.com'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:git://github.com/Weaponboy/Nexus.git'
+                        developerConnection = 'scm:git:ssh://github.com:Weaponboy/Nexus.git'
+                        url = 'http://github.com/Weaponboy/Nexus/'
+                    }
                 }
             }
         }
@@ -102,5 +123,9 @@ afterEvaluate {
                 url = "${project.buildDir}/release"
             }
         }
+    }
+
+    tasks.named("publishReleasePublicationToMavenLocal") {
+        dependsOn tasks.named("assembleRelease")
     }
 }
