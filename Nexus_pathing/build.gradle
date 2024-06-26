@@ -104,7 +104,7 @@ afterEvaluate {
                     }
                     developers {
                         developer {
-                            id = 'WeaponBoy'
+                            id = 'Weaponboy'
                             name = 'Josh Anderson'
                             email = 'weaponboy@example.com'
                         }
