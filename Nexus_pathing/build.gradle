@@ -14,7 +14,8 @@ plugins {
 
 apply plugin: 'com.android.library'
 
-version = 'v5.1.0'
+group 'dev.weaponboy.nexus_pathing'
+version = 'v0.0.0'
 
 android {
     namespace 'dev.weaponboy.nexus_pathing'
@@ -48,6 +49,17 @@ android {
     testOptions {
         unitTests.all {
             useJUnitPlatform()
+        }
+    }
+
+    sourceSets {
+        main {
+            java {
+                srcDirs = ['src/main/java']
+            }
+            resources {
+                srcDirs = ['src/main/resources']
+            }
         }
     }
 }
@@ -86,14 +98,14 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 groupId = 'com.github.Weaponboy'
-                artifactId = 'nexus_pathing'
-                version = 'v5.1.0'
+                artifactId = 'Nexus_pathing'
+                version = 'v0.0.0'
 
                 // Include the AAR artifact
                 artifact("$buildDir/outputs/aar/${project.name}-release.aar")
 
                 pom {
-                    name = 'nexus_pathing'
+                    name = 'Nexus_pathing'
                     description = 'Description of your library'
                     url = 'http://www.example.com'
                     licenses {
@@ -106,7 +118,7 @@ afterEvaluate {
                         developer {
                             id = 'Weaponboy'
                             name = 'Josh Anderson'
-                            email = 'weaponboy@example.com'
+                            email = 'joshandy06@gmail.com'
                         }
                     }
                     scm {
