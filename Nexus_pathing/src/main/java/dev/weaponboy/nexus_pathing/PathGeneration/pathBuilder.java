@@ -5,6 +5,7 @@ import java.util.List;
 
 import dev.weaponboy.nexus_pathing.PathGeneration.commands.sectionBuilder;
 import dev.weaponboy.nexus_pathing.PathingUtility.PathingVelocity;
+import dev.weaponboy.nexus_pathing.RobotUtilities.RobotConfig;
 import dev.weaponboy.nexus_pathing.RobotUtilities.Vector2D;
 
 public class pathBuilder {
@@ -16,6 +17,8 @@ public class pathBuilder {
     public ArrayList<Vector2D> followablePath = new ArrayList<>();
 
     public ArrayList<PathingVelocity> pathingVelocity = new ArrayList<>();
+
+    RobotConfig robotConfig = new RobotConfig();
 
     Vector2D secondPoint = new Vector2D();
 
@@ -92,21 +95,21 @@ public class pathBuilder {
 
         double pathLength = calculateTotalDistance(followablePath);
 
-        double acceleration_dt = (double) 190 / 146;
+        double acceleration_dt = robotConfig.MAX_X_VELOCITY() / robotConfig.MAX_X_ACCELERATION();
 
         // If we can't accelerate to max velocity in the given distance, we'll accelerate as much as possible
-        double halfway_distance = pathLength / 1.2;
+        double halfway_distance = pathLength/2;
         double acceleration_distance;
 
-        acceleration_distance = 0.5 * 146 * acceleration_dt * 2;
+        acceleration_distance = 0.5 * robotConfig.MAX_X_ACCELERATION() * acceleration_dt * 2;
 
         if (acceleration_distance > halfway_distance){
-            acceleration_dt = (halfway_distance / 146);
+            acceleration_dt = (halfway_distance / robotConfig.MAX_X_ACCELERATION());
         }
 
-        acceleration_distance = 0.5 * 146 * acceleration_dt * 2;
+        acceleration_distance = 0.5 * robotConfig.MAX_X_ACCELERATION() * acceleration_dt * 2;
 
-        double max_velocity = 146 * acceleration_dt;
+        double max_velocity = robotConfig.MAX_X_ACCELERATION() * acceleration_dt;
 
         double deceleration_dt = acceleration_distance;
 
@@ -140,8 +143,6 @@ public class pathBuilder {
                 double velocityXValue = (Xfactor * max_velocity) * DecSlope;
                 double velocityYValue = (Yfactor * max_velocity) * DecSlope;
 
-//                System.out.println("Vector dec " + (Math.abs(velocityYValue)+Math.abs(velocityXValue)));
-
                 pathVelo = new PathingVelocity(velocityXValue,velocityYValue);
 
                 pathingVelocity.add(pathVelo);
@@ -161,8 +162,6 @@ public class pathBuilder {
 
                 double velocityXValue = (Xfactor) * max_velocity;
                 double velocityYValue = (Yfactor) * max_velocity;
-
-//                System.out.println("Vector " + (Math.abs(velocityYValue)+Math.abs(velocityXValue)));
 
                 pathVelo = new PathingVelocity(velocityXValue, velocityYValue);
 
