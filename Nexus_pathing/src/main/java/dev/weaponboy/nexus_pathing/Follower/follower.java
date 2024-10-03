@@ -28,6 +28,8 @@ public class follower {
     PIDController largeHeadingPID = new PIDController(config.getHEADING_P_LARGE(), 0, config.getHEADING_D_LARGE());
     PIDController smallHeadingPID = new PIDController(config.getHEADING_P_SMALL(), 0, config.getHEADING_D_SMALL());
 
+    Vector2D robotPositionVector = new Vector2D();
+
     public void setPath(pathBuilder path){
         pathoperator = new pathOperator(path.followablePath, path.pathingVelocity);
     }
@@ -38,8 +40,6 @@ public class follower {
 
     public RobotPower followPathAuto(double targetHeading, double H, double X, double Y, double XV, double YV){
 
-        Vector2D robotPositionVector = new Vector2D();
-
         Vector2D targetPoint = pathoperator.getPointOnFollowable(pathoperator.getLastPoint());
 
         robotPositionVector.set(X, Y);
@@ -47,12 +47,20 @@ public class follower {
         PathingPower correctivePower = new PathingPower();
         PathingPower pathingPower;
 
-        pathingPower = getPathingPower(robotPositionVector, XV, YV);
+        pathingPower = getPathingPower(robotPositionVector, XV, YV, H);
 
         double Xpower = correctivePower.getVertical() + pathingPower.getVertical();
         double Ypower = correctivePower.getHorizontal() + pathingPower.getHorizontal();
 
         return new RobotPower(Xpower, Ypower, getTurnPower(targetHeading, H));
+    }
+
+    public boolean isFinished(){
+        Vector2D endPoint = pathoperator.getPointOnFollowable(pathoperator.getLastPoint());
+        double XError = Math.abs(endPoint.getX() - robotPositionVector.getX());
+        double YError = Math.abs(endPoint.getY() - robotPositionVector.getY());
+
+        return XError < 1 && YError < 1;
     }
 
     private double getTurnPower(double targetHeading, double currentHeading){
@@ -76,16 +84,16 @@ public class follower {
         return turnPower;
     }
 
-    private PathingPower getPathingPower(Vector2D robotPos, double XVelo, double YVelo){
+    private PathingPower getPathingPower(Vector2D robotPos, double XVelo, double YVelo, double heading){
 
         Vector2D error;
         PathingPower actualPathingPower = new PathingPower();
 
-        double kyfull = 0.0079;
-        double kxfull = 0.0053;
+        double kyfull = 1/config.MAX_Y_VELOCITY();
+        double kxfull = 1/config.MAX_X_VELOCITY();
 
-        double ky = 0.0053;
-        double kx = 0.00346;
+        double ky = 1/config.MAX_X_VELOCITY();
+        double kx = 1/(config.MAX_X_VELOCITY()*(config.MAX_X_VELOCITY()/ config.MAX_Y_VELOCITY()));
 
         int closestPos = pathoperator.getRobotPositionOnPath(robotPos);
         PathingVelocity targetVelocity = pathoperator.getTargetVelocity(closestPos);
@@ -113,8 +121,11 @@ public class follower {
         double veloXDef = targetVelocity.getXVelocity() - XVelo;
         double veloYDef = targetVelocity.getYVelocity() - YVelo;
 
-        double vertical = kxfull * (targetVelocity.getXVelocity()+veloXDef);
-        double horizontal = kyfull * (targetVelocity.getYVelocity()+veloYDef);
+        double relativeXVelo = (targetVelocity.getYVelocity()+veloYDef) * Math.sin(Math.toRadians(heading)) + (targetVelocity.getXVelocity()+veloXDef) * Math.cos(Math.toRadians(heading));
+        double relativeYVelo = (targetVelocity.getYVelocity()+veloYDef) * Math.cos(Math.toRadians(heading)) - (targetVelocity.getXVelocity()+veloXDef) * Math.sin(Math.toRadians(heading));
+
+        double vertical = kxfull * relativeXVelo;
+        double horizontal = kyfull * relativeYVelo;
 
         if(horizontal > 1){
             vertical = kx * (targetVelocity.getXVelocity()+veloXDef);
@@ -133,6 +144,9 @@ public class follower {
 
         Vector2D error;
         PathingPower correctivePower = new PathingPower();
+
+        correctiveXFinalAdjustment.setI(xI);
+        correctiveYFinalAdjustment.setI(yI);
 
         error = new Vector2D( targetPos.getX() - robotPos.getX(),  targetPos.getY() - robotPos.getY());
 
