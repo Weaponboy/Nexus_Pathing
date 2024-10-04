@@ -17,7 +17,15 @@ public class pathsManager {
 
     String currentPath = "null";
 
-    public pathsManager(){}
+    public pathsManager(){
+        pathBuilder newBuilder = new pathBuilder();
+
+        objectMap.put("default", newBuilder);
+
+        paths.add("default");
+
+        currentPath = "default";
+    }
 
     public void addNewPath(String pathName){
 
