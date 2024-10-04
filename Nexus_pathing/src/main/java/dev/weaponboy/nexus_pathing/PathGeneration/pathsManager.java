@@ -18,13 +18,13 @@ public class pathsManager {
     String currentPath = "null";
 
     public pathsManager(){
-        pathBuilder newBuilder = new pathBuilder();
-
-        objectMap.put("default", newBuilder);
-
-        paths.add("default");
-
-        currentPath = "default";
+//        pathBuilder newBuilder = new pathBuilder();
+//
+//        objectMap.put("default", newBuilder);
+//
+//        paths.add("default");
+//
+//        currentPath = "default";
     }
 
     public void addNewPath(String pathName){
@@ -75,7 +75,7 @@ public class pathsManager {
 
     public void buildPath(sectionBuilder[] pathSections){
 
-        if (currentPath == "null") {
+        if (!(currentPath == "null")) {
             System.out.println("");
             System.out.println("trying: " + currentPath);
             Objects.requireNonNull(objectMap.get(currentPath)).buildPath(pathSections);

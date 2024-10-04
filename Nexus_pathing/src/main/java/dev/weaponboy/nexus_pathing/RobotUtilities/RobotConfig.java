@@ -1,8 +1,14 @@
 package dev.weaponboy.nexus_pathing.RobotUtilities;
 
+import static java.security.AccessController.getContext;
+
+import android.content.res.AssetManager;
+
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Objects;
 import java.util.Properties;
 
 public class RobotConfig {
@@ -18,16 +24,19 @@ public class RobotConfig {
     }
 
     public RobotConfig() {
-        try {
-            InputStream input = getClass().getClassLoader().getSystemResourceAsStream("default-robot-config.properties");
-            if (input == null) {
-                System.out.println("Sorry, unable to find default-robot-config.properties");
-                return;
+
+        Properties properties = new Properties();
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("default-robot-config.properties")) {
+            if (inputStream != null) {
+                properties.load(inputStream);
+            } else {
+                throw new FileNotFoundException("Property file not found in the classpath");
             }
-            properties.load(input);
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+        this.properties = properties;
     }
 
     public double getX_P_END_COR() {
