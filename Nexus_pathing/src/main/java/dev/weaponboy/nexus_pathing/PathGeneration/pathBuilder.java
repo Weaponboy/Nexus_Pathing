@@ -95,25 +95,26 @@ public class pathBuilder {
 
         double pathLength = calculateTotalDistance(followablePath);
 
+        double accelDistance = (robotConfig.MAX_X_VELOCITY() * robotConfig.MAX_X_VELOCITY()) / (robotConfig.MAX_X_ACCELERATION()*2);
+
         double acceleration_dt = robotConfig.MAX_X_VELOCITY() / robotConfig.MAX_X_ACCELERATION();
 
         // If we can't accelerate to max velocity in the given distance, we'll accelerate as much as possible
         double halfway_distance = pathLength/2;
-        double acceleration_distance;
 
-        acceleration_distance = 0.5 * robotConfig.MAX_X_ACCELERATION() * acceleration_dt * 2;
-
-        if (acceleration_distance > halfway_distance){
-            acceleration_dt = (halfway_distance / robotConfig.MAX_X_ACCELERATION());
+        if (accelDistance > halfway_distance){
+            accelDistance = (halfway_distance);
         }
 
-        acceleration_distance = 0.5 * robotConfig.MAX_X_ACCELERATION() * acceleration_dt * 2;
+        double max_velocity = Math.sqrt(2 * robotConfig.MAX_X_ACCELERATION() * accelDistance);
 
-        double max_velocity = robotConfig.MAX_X_ACCELERATION() * acceleration_dt;
-
-        double deceleration_dt = acceleration_distance;
+        double deceleration_dt = accelDistance;
 
         int decIndex = (int) (deceleration_dt/0.25);
+
+        System.out.println("accelDistance: " + accelDistance);
+        System.out.println("max_velocity: " + max_velocity);
+        System.out.println("decIndex: " + decIndex);
 
         int range;
 
@@ -147,6 +148,8 @@ public class pathBuilder {
 
                 pathingVelocity.add(pathVelo);
 
+                System.out.println("pathVelo deccel velocityXValue: " + velocityXValue);
+
             }else {
 
                 Vector2D currentPoint = followablePath.get(i);
@@ -166,6 +169,8 @@ public class pathBuilder {
                 pathVelo = new PathingVelocity(velocityXValue, velocityYValue);
 
                 pathingVelocity.add(pathVelo);
+
+                System.out.println("pathVelo velocityXValue: " + velocityXValue);
 
             }
 
