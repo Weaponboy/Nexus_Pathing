@@ -128,14 +128,15 @@ public class follower {
         double horizontal = kyfull * relativeYVelo;
 
         if(horizontal > 1){
-            vertical = kx * (targetVelocity.getXVelocity()+veloXDef);
-            horizontal = ky * (targetVelocity.getYVelocity()+veloYDef);
+            vertical = kx * relativeXVelo;
+            horizontal = ky * relativeYVelo;
         }
 
         double Xdenominator = Math.max(Math.abs(vertical) + Math.abs(xPowerC) + Math.abs(XpowerCurve), 1);
         double Ydenominator = Math.max(Math.abs(horizontal) + Math.abs(yPowerC) + Math.abs(YpowerCurve), 1);
 
         actualPathingPower.set((vertical+xPowerC+XpowerCurve)/Xdenominator, (horizontal+yPowerC+YpowerCurve)/Ydenominator);
+        actualPathingPower.set(vertical, horizontal);
 
         return actualPathingPower;
     }
