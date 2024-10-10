@@ -19,16 +19,16 @@ public class RobotConfig {
     double Y_P_END_COR = 0.01;
     double Y_D_END_COR = 0.0001;
 
-    double X_P_PATH_COR = 0.09;
+    double X_P_PATH_COR = 0.04;
     double X_D_PATH_COR = 0.0001;
 
-    double Y_P_PATH_COR = 0.09;
+    double Y_P_PATH_COR = 0.04;
     double Y_D_PATH_COR = 0.0001;
 
-    double HEADING_P_LARGE = 0.06;
+    double HEADING_P_LARGE = 0.03;
     double  HEADING_D_LARGE = 0.001;
 
-    double HEADING_P_SMALL = 0.015;
+    double HEADING_P_SMALL = 0.01;
     double HEADING_D_SMALL = 0.0008;
 
     double MAX_X_VELOCITY = 240;

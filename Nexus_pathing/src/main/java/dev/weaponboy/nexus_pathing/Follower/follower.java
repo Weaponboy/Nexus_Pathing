@@ -110,6 +110,9 @@ public class follower {
         double XpowerCurve = pathoperator.pathCurve.get(index).getX()*curveX;
         double YpowerCurve = pathoperator.pathCurve.get(index).getY()*curveY;
 
+        double relativeXCurve = (YpowerCurve) * Math.sin(Math.toRadians(heading)) + (XpowerCurve) * Math.cos(Math.toRadians(heading));
+        double relativeYCurve = (YpowerCurve) * Math.cos(Math.toRadians(heading)) - (XpowerCurve) * Math.sin(Math.toRadians(heading));
+
         error = pathoperator.getErrorToPath(robotPos, closestPos);
 
         double xDist = error.getX();
@@ -117,6 +120,9 @@ public class follower {
 
         double xPowerC = xerror.calculate(xDist);
         double yPowerC = yerror.calculate(yDist);
+
+        double relativeXCorrective = (yPowerC) * Math.sin(Math.toRadians(heading)) + (xPowerC) * Math.cos(Math.toRadians(heading));
+        double relativeYCorrective = (yPowerC) * Math.cos(Math.toRadians(heading)) - (xPowerC) * Math.sin(Math.toRadians(heading));
 
         double veloXDef = targetVelocity.getXVelocity() - XVelo;
         double veloYDef = targetVelocity.getYVelocity() - YVelo;
@@ -132,11 +138,11 @@ public class follower {
             horizontal = ky * relativeYVelo;
         }
 
-        double Xdenominator = Math.max(Math.abs(vertical) + Math.abs(xPowerC) + Math.abs(XpowerCurve), 1);
-        double Ydenominator = Math.max(Math.abs(horizontal) + Math.abs(yPowerC) + Math.abs(YpowerCurve), 1);
+        double Xdenominator = Math.max(Math.abs(vertical) + Math.abs(relativeXCorrective) + Math.abs(relativeXCurve), 1);
+        double Ydenominator = Math.max(Math.abs(horizontal) + Math.abs(relativeYCorrective) + Math.abs(relativeYCurve), 1);
 
-        actualPathingPower.set((vertical+xPowerC+XpowerCurve)/Xdenominator, (horizontal+yPowerC+YpowerCurve)/Ydenominator);
-        actualPathingPower.set(vertical, horizontal);
+        actualPathingPower.set((vertical+relativeXCorrective+relativeXCurve)/Xdenominator, (horizontal+relativeYCorrective+relativeYCurve)/Ydenominator);
+//        actualPathingPower.set(vertical, horizontal);
 
         return actualPathingPower;
     }
