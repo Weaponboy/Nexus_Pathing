@@ -75,11 +75,12 @@ public class follower {
             rotdist = (rotdist - 360);
         }
 
-        if (Math.abs(rotdist) > 20){
-            turnPower = largeHeadingPID.calculate(-rotdist);
-        }else {
-            turnPower = smallHeadingPID.calculate(-rotdist);
-        }
+        turnPower = largeHeadingPID.calculate(-rotdist);
+//        if (Math.abs(rotdist) > 20){
+//            c
+//        }else {
+//            turnPower = smallHeadingPID.calculate(-rotdist);
+//        }
 
         return turnPower;
     }
@@ -124,8 +125,11 @@ public class follower {
         double relativeXCorrective = (yPowerC) * Math.sin(Math.toRadians(heading)) + (xPowerC) * Math.cos(Math.toRadians(heading));
         double relativeYCorrective = (yPowerC) * Math.cos(Math.toRadians(heading)) - (xPowerC) * Math.sin(Math.toRadians(heading));
 
-        double veloXDef = targetVelocity.getXVelocity() - XVelo;
-        double veloYDef = targetVelocity.getYVelocity() - YVelo;
+//        double veloXDef = targetVelocity.getXVelocity() - XVelo;
+//        double veloYDef = targetVelocity.getYVelocity() - YVelo;
+
+        double veloXDef = 0;
+        double veloYDef = 0;
 
         double relativeXVelo = (targetVelocity.getYVelocity()+veloYDef) * Math.sin(Math.toRadians(heading)) + (targetVelocity.getXVelocity()+veloXDef) * Math.cos(Math.toRadians(heading));
         double relativeYVelo = (targetVelocity.getYVelocity()+veloYDef) * Math.cos(Math.toRadians(heading)) - (targetVelocity.getXVelocity()+veloXDef) * Math.sin(Math.toRadians(heading));
