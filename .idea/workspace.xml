@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1113699c-ae65-4143-8515-455206253754" name="Changes" comment="v1.0.0: Full release ready for testing and first scrim auto paths" />
+    <list default="true" id="1113699c-ae65-4143-8515-455206253754" name="Changes" comment="v1.0.0: Full release ready for testing and first scrim auto paths">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/RobotUtilities/RobotConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/RobotUtilities/RobotConfig.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -217,7 +220,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728646137359</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="v1.0.0: Full release ready for testing and first scrim auto paths">
+      <option name="closed" value="true" />
+      <created>1728652063660</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1728652063660</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
