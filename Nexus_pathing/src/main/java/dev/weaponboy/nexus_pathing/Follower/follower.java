@@ -163,10 +163,10 @@ public class follower {
             horizontal = ky * relativeYVelo;
         }
 
-        double Xdenominator = Math.max(Math.abs(vertical) + Math.abs(relativeXCorrective), 1);
-        double Ydenominator = Math.max(Math.abs(horizontal) + Math.abs(relativeYCorrective), 1);
+        double Xdenominator = Math.max(Math.abs(vertical) + Math.abs(relativeXCorrective) + Math.abs(relativeXCurve), 1);
+        double Ydenominator = Math.max(Math.abs(horizontal) + Math.abs(relativeYCorrective) + Math.abs(relativeYCurve), 1);
 
-        actualPathingPower.set((vertical+relativeXCorrective)/Xdenominator, (horizontal+relativeYCorrective)/Ydenominator);
+        actualPathingPower.set((vertical+relativeXCorrective+relativeXCurve)/Xdenominator, (horizontal+relativeYCorrective+relativeXCurve)/Ydenominator);
 //        actualPathingPower.set(vertical, horizontal);
 
         return actualPathingPower;
