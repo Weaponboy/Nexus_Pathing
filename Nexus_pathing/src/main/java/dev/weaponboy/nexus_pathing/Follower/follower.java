@@ -53,19 +53,19 @@ public class follower {
         double XError = Math.abs(endPoint.getX() - robotPositionVector.getX());
         double YError = Math.abs(endPoint.getY() - robotPositionVector.getY());
 
-        if (!isFinished() && XV < 5 && YV < 5){
-            if(Math.abs(XV) < 5 && Math.abs(XError) > 1){
-                xI += 0.006;
-            }else {
-                xI = 0;
-            }
-
-            if(Math.abs(YV) < 5 && Math.abs(YError) > 1){
-                yI += 0.008;
-            }else {
-                yI = 0;
-            }
-        }
+//        if (!isFinished() && XV < 5 && YV < 5){
+//            if(Math.abs(XV) < 5 && Math.abs(XError) > 1){
+//                xI += 0.006;
+//            }else {
+//                xI = 0;
+//            }
+//
+//            if(Math.abs(YV) < 5 && Math.abs(YError) > 1){
+//                yI += 0.008;
+//            }else {
+//                yI = 0;
+//            }
+//        }
 
         double Xpower = correctivePower.getVertical() + pathingPower.getVertical();
         double Ypower = correctivePower.getHorizontal() + pathingPower.getHorizontal();
@@ -163,10 +163,10 @@ public class follower {
             horizontal = ky * relativeYVelo;
         }
 
-        double Xdenominator = Math.max(Math.abs(vertical) + Math.abs(relativeXCorrective) + Math.abs(relativeXCurve), 1);
-        double Ydenominator = Math.max(Math.abs(horizontal) + Math.abs(relativeYCorrective) + Math.abs(relativeYCurve), 1);
+        double Xdenominator = Math.max(Math.abs(vertical) + Math.abs(relativeXCorrective), 1);
+        double Ydenominator = Math.max(Math.abs(horizontal) + Math.abs(relativeYCorrective), 1);
 
-        actualPathingPower.set((vertical+relativeXCorrective+relativeXCurve)/Xdenominator, (horizontal+relativeYCorrective+relativeXCurve)/Ydenominator);
+        actualPathingPower.set((vertical+relativeXCorrective)/Xdenominator, (horizontal+relativeYCorrective)/Ydenominator);
 //        actualPathingPower.set(vertical, horizontal);
 
         return actualPathingPower;
