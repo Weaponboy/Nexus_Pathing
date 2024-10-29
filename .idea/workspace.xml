@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1113699c-ae65-4143-8515-455206253754" name="Changes" comment="v1.0.0: Full release ready for testing and first scrim auto paths">
+    <list default="true" id="1113699c-ae65-4143-8515-455206253754" name="Changes" comment="v1.0.6: Updating I end targeting, removed curvature">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/RobotUtilities/RobotConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/RobotUtilities/RobotConfig.java" afterDir="false" />
     </list>
@@ -228,7 +228,39 @@
       <option name="project" value="LOCAL" />
       <updated>1728652063660</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="v1.0.6: Updating I end targeting, removed curvature">
+      <option name="closed" value="true" />
+      <created>1729079653451</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1729079653451</updated>
+    </task>
+    <task id="LOCAL-00011" summary="v1.0.6: Updating I end targeting, removed curvature">
+      <option name="closed" value="true" />
+      <created>1729080436065</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1729080436065</updated>
+    </task>
+    <task id="LOCAL-00012" summary="v1.0.6: Updating I end targeting, removed curvature">
+      <option name="closed" value="true" />
+      <created>1729080954620</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1729080954620</updated>
+    </task>
+    <task id="LOCAL-00013" summary="v1.0.6: Updating I end targeting, removed curvature">
+      <option name="closed" value="true" />
+      <created>1729081013970</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1729081013970</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -236,7 +268,8 @@
     <MESSAGE value="v0.0.2 : added isFinished method, fixed issues with the velocity control" />
     <MESSAGE value="v1:test : testing file reading" />
     <MESSAGE value="v1.0.0: Full release ready for testing and first scrim auto paths" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.0.0: Full release ready for testing and first scrim auto paths" />
+    <MESSAGE value="v1.0.6: Updating I end targeting, removed curvature" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.0.6: Updating I end targeting, removed curvature" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Nexus$TestingManager.ic" NAME="TestingManager Coverage Results" MODIFIED="1720002880041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
