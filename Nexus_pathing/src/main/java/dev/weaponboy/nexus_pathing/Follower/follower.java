@@ -53,19 +53,22 @@ public class follower {
         double XError = Math.abs(endPoint.getX() - robotPositionVector.getX());
         double YError = Math.abs(endPoint.getY() - robotPositionVector.getY());
 
-//        if (!isFinished() && XV < 5 && YV < 5){
-//            if(Math.abs(XV) < 5 && Math.abs(XError) > 1){
-//                xI += 0.006;
-//            }else {
-//                xI = 0;
-//            }
-//
-//            if(Math.abs(YV) < 5 && Math.abs(YError) > 1){
-//                yI += 0.008;
-//            }else {
-//                yI = 0;
-//            }
-//        }
+        if (!isFinished() && XV < 5 && YV < 5){
+            if(Math.abs(XV) < 5 && Math.abs(XError) > 1){
+                xI += 0.006;
+            }else {
+                xI = 0;
+            }
+
+            if(Math.abs(YV) < 5 && Math.abs(YError) > 1){
+                yI += 0.008;
+            }else {
+                yI = 0;
+            }
+        }else {
+            xI = 0;
+            yI = 0;
+        }
 
         double Xpower = correctivePower.getVertical() + pathingPower.getVertical();
         double Ypower = correctivePower.getHorizontal() + pathingPower.getHorizontal();
