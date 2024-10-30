@@ -47,21 +47,19 @@ public class follower {
         PathingPower correctivePower = new PathingPower();
         PathingPower pathingPower;
 
-        pathingPower = getPathingPower(robotPositionVector, XV, YV, H);
-
         Vector2D endPoint = pathoperator.getPointOnFollowable(pathoperator.getLastPoint());
         double XError = Math.abs(endPoint.getX() - X);
         double YError = Math.abs(endPoint.getY() - Y);
 
-        if (!isFinished() && XV < 5 && YV < 5){
-            if(Math.abs(XV) < 5 && Math.abs(XError) > 1){
-                xI += 0.003;
+        if (!isFinished() && XV < 3 && YV < 3){
+            if(Math.abs(XV) < 3 && Math.abs(XError) > 1){
+                xI += 0.002;
             }else {
                 xI = 0;
             }
 
-            if(Math.abs(YV) < 5 && Math.abs(YError) > 1){
-                yI += 0.003;
+            if(Math.abs(YV) < 3 && Math.abs(YError) > 1){
+                yI += 0.002;
             }else {
                 yI = 0;
             }
@@ -69,6 +67,8 @@ public class follower {
             xI = 0;
             yI = 0;
         }
+
+        pathingPower = getPathingPower(robotPositionVector, XV, YV, H);
 
         double Xpower = correctivePower.getVertical() + pathingPower.getVertical();
         double Ypower = correctivePower.getHorizontal() + pathingPower.getHorizontal();
