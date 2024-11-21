@@ -72,7 +72,7 @@ public class follower {
             yI = 0;
         }
 
-        if (Math.hypot(XError, YError) < 5){
+        if (Math.hypot(XError, YError) < 10){
             correctiveXFinalAdjustment.setI(xI);
             correctiveYFinalAdjustment.setI(yI);
             pathingPower = new PathingPower(correctiveXFinalAdjustment.calculate(XError), correctiveYFinalAdjustment.calculate(YError));

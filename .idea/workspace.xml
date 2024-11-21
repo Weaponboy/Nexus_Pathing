@@ -367,7 +367,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732200751954</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="v2.0.8: Updating I end targeting, got real robot velocities">
+      <option name="closed" value="true" />
+      <created>1732201181889</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1732201181889</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -385,7 +393,7 @@
     <SUITE FILE_PATH="coverage/Nexus$TestingManager.ic" NAME="TestingManager Coverage Results" MODIFIED="1720002880041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>dev.weaponboy.testing.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Nexus$follower.ic" NAME="follower Coverage Results" MODIFIED="1732186009932" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/Nexus$follower.ic" NAME="follower Coverage Results" MODIFIED="1732201096192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>dev.weaponboy.nexus_pathing.Follower.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Nexus$Testing.ic" NAME="Testing Coverage Results" MODIFIED="1728203519907" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
