@@ -39,7 +39,11 @@ public class follower {
     }
 
     public static void main(String[] args) {
-        System.out.println(correctiveXFinalAdjustment.calculate(5));
+        double XErrorGlobal = (5) * Math.sin(Math.toRadians(180)) + (5) * Math.cos(Math.toRadians(180));
+        double YErrorGlobal = (5) * Math.cos(Math.toRadians(180)) - (5) * Math.sin(Math.toRadians(180));
+        System.out.println(XErrorGlobal);
+        System.out.println(YErrorGlobal);
+        System.out.println();
     }
 
     public RobotPower followPathAuto(double targetHeading, double H, double X, double Y, double XV, double YV){
@@ -52,8 +56,9 @@ public class follower {
         PathingPower pathingPower;
 
         Vector2D endPoint = pathoperator.getPointOnFollowable(pathoperator.getLastPoint());
-        double XError = Math.abs(endPoint.getX() - X);
-        double YError = Math.abs(endPoint.getY() - Y);
+        double XError = endPoint.getX() - X;
+        double YError = endPoint.getY() - Y;
+
 
         if (!isFinished() && Math.abs(XV) < 3 && Math.abs(YV) < 3){
             if(Math.abs(XV) < 3 && Math.abs(XError) > 1){
