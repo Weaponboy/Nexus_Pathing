@@ -94,6 +94,14 @@ public class follower {
         return XError < 1 && YError < 1;
     }
 
+    public boolean isFinished(double XTol, double YTol){
+        Vector2D endPoint = pathoperator.getPointOnFollowable(pathoperator.getLastPoint());
+        double XError = Math.abs(endPoint.getX() - robotPositionVector.getX());
+        double YError = Math.abs(endPoint.getY() - robotPositionVector.getY());
+
+        return XError < XTol && YError < YTol;
+    }
+
     private double getTurnPower(double targetHeading, double currentHeading){
 
         double turnPower;
