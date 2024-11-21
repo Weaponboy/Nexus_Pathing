@@ -90,12 +90,6 @@ public class follower {
         return new RobotPower(Xpower, Ypower, getTurnPower(targetHeading, H));
     }
 
-    public static Point2D.Double rotatePosition(double heading, Point2D.Double point){
-
-
-        return new Point2D.Double(X, Y);
-    }
-
     public boolean isFinished(){
         Vector2D endPoint = pathoperator.getPointOnFollowable(pathoperator.getLastPoint());
         double XError = Math.abs(endPoint.getX() - robotPositionVector.getX());
