@@ -38,6 +38,10 @@ public class follower {
         pathoperator.getRobotPositionOnPathFullPath(robotPos);
     }
 
+    public static void main(String[] args) {
+        System.out.println(correctiveXFinalAdjustment.calculate(5));
+    }
+
     public RobotPower followPathAuto(double targetHeading, double H, double X, double Y, double XV, double YV){
 
         Vector2D targetPoint = pathoperator.getPointOnFollowable(pathoperator.getLastPoint());
