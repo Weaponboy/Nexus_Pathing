@@ -73,8 +73,8 @@ public class follower {
         }
 
         if (Math.hypot(XError, YError) < 10){
-            correctiveXFinalAdjustment.setI(xI);
-            correctiveYFinalAdjustment.setI(yI);
+//            correctiveXFinalAdjustment.setI(xI);
+//            correctiveYFinalAdjustment.setI(yI);
             pathingPower = new PathingPower(correctiveXFinalAdjustment.calculate(XError), correctiveYFinalAdjustment.calculate(YError));
         }else {
             pathingPower = getPathingPower(robotPositionVector, XV, YV, H);
