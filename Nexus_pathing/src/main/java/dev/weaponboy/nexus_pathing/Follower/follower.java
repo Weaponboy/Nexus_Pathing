@@ -75,7 +75,11 @@ public class follower {
         if (Math.hypot(XError, YError) < 10){
 //            correctiveXFinalAdjustment.setI(xI);
 //            correctiveYFinalAdjustment.setI(yI);
-            pathingPower = new PathingPower(correctiveXFinalAdjustment.calculate(XError), correctiveYFinalAdjustment.calculate(YError));
+
+            double XErrorGlobal = (YError) * Math.sin(Math.toRadians(H)) + (XError) * Math.cos(Math.toRadians(H));
+            double YErrorGlobal = (YError) * Math.cos(Math.toRadians(H)) - (XError) * Math.sin(Math.toRadians(H));
+
+            pathingPower = new PathingPower(correctiveXFinalAdjustment.calculate(XErrorGlobal), correctiveYFinalAdjustment.calculate(YErrorGlobal));
         }else {
             pathingPower = getPathingPower(robotPositionVector, XV, YV, H);
         }
@@ -84,6 +88,12 @@ public class follower {
         double Ypower = correctivePower.getHorizontal() + pathingPower.getHorizontal();
 
         return new RobotPower(Xpower, Ypower, getTurnPower(targetHeading, H));
+    }
+
+    public static Point2D.Double rotatePosition(double heading, Point2D.Double point){
+
+
+        return new Point2D.Double(X, Y);
     }
 
     public boolean isFinished(){
