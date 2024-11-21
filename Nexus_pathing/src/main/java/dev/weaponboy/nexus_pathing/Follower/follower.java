@@ -51,24 +51,26 @@ public class follower {
         double XError = Math.abs(endPoint.getX() - X);
         double YError = Math.abs(endPoint.getY() - Y);
 
-//        if (!isFinished() && XV < 3 && YV < 3){
-//            if(Math.abs(XV) < 3 && Math.abs(XError) > 1){
-//                xI += 0.002;
-//            }else {
-//                xI = 0;
-//            }
-//
-//            if(Math.abs(YV) < 3 && Math.abs(YError) > 1){
-//                yI += 0.002;
-//            }else {
-//                yI = 0;
-//            }
-//        }else {
-//            xI = 0;
-//            yI = 0;
-//        }
+        if (!isFinished() && Math.abs(XV) < 3 && Math.abs(YV) < 3){
+            if(Math.abs(XV) < 3 && Math.abs(XError) > 1){
+                xI += 0.002;
+            }else {
+                xI = 0;
+            }
+
+            if(Math.abs(YV) < 3 && Math.abs(YError) > 1){
+                yI += 0.002;
+            }else {
+                yI = 0;
+            }
+        }else {
+            xI = 0;
+            yI = 0;
+        }
 
         if (Math.hypot(XError, YError) < 5){
+            correctiveXFinalAdjustment.setI(xI);
+            correctiveYFinalAdjustment.setI(yI);
             pathingPower = new PathingPower(correctiveXFinalAdjustment.calculate(XError), correctiveYFinalAdjustment.calculate(YError));
         }else {
             pathingPower = getPathingPower(robotPositionVector, XV, YV, H);
