@@ -10,6 +10,8 @@ import dev.weaponboy.nexus_pathing.RobotUtilities.Vector2D;
 
 public class follower {
 
+    boolean pathFinished = false;
+
     pathOperator pathoperator;
 
     static RobotConfig config = new RobotConfig();
@@ -31,6 +33,7 @@ public class follower {
     Vector2D robotPositionVector = new Vector2D();
 
     public void setPath(pathBuilder path){
+        pathFinished = false;
         pathoperator = new pathOperator(path.followablePath, path.pathingVelocity);
     }
 
@@ -38,13 +41,13 @@ public class follower {
         pathoperator.getRobotPositionOnPathFullPath(robotPos);
     }
 
-    public static void main(String[] args) {
-        double XErrorGlobal = (5) * Math.sin(Math.toRadians(180)) + (5) * Math.cos(Math.toRadians(180));
-        double YErrorGlobal = (5) * Math.cos(Math.toRadians(180)) - (5) * Math.sin(Math.toRadians(180));
-        System.out.println(XErrorGlobal);
-        System.out.println(YErrorGlobal);
-        System.out.println();
-    }
+//    public static void main(String[] args) {
+//        double XErrorGlobal = (5) * Math.sin(Math.toRadians(180)) + (5) * Math.cos(Math.toRadians(180));
+//        double YErrorGlobal = (5) * Math.cos(Math.toRadians(180)) - (5) * Math.sin(Math.toRadians(180));
+//        System.out.println(XErrorGlobal);
+//        System.out.println(YErrorGlobal);
+//        System.out.println();
+//    }
 
     public RobotPower followPathAuto(double targetHeading, double H, double X, double Y, double XV, double YV){
 
@@ -95,12 +98,16 @@ public class follower {
         return new RobotPower(Xpower, Ypower, getTurnPower(targetHeading, H));
     }
 
+    public void finishPath(){
+        pathFinished = true;
+    }
+
     public boolean isFinished(){
         Vector2D endPoint = pathoperator.getPointOnFollowable(pathoperator.getLastPoint());
         double XError = Math.abs(endPoint.getX() - robotPositionVector.getX());
         double YError = Math.abs(endPoint.getY() - robotPositionVector.getY());
 
-        return XError < 1 && YError < 1;
+        return XError < 1 && YError < 1 || pathFinished;
     }
 
     public boolean isFinished(double XTol, double YTol){
@@ -108,7 +115,27 @@ public class follower {
         double XError = Math.abs(endPoint.getX() - robotPositionVector.getX());
         double YError = Math.abs(endPoint.getY() - robotPositionVector.getY());
 
-        return XError < XTol && YError < YTol;
+        return XError < XTol && YError < YTol || pathFinished;
+    }
+
+    public double getErrorToEnd(){
+        Vector2D endPoint = pathoperator.getPointOnFollowable(pathoperator.getLastPoint());
+        double XError = Math.abs(endPoint.getX() - robotPositionVector.getX());
+        double YError = Math.abs(endPoint.getY() - robotPositionVector.getY());
+
+        return Math.hypot(XError, YError);
+    }
+
+    public double getXError(){
+        Vector2D endPoint = pathoperator.getPointOnFollowable(pathoperator.getLastPoint());
+
+        return Math.abs(endPoint.getX() - robotPositionVector.getX());
+    }
+
+    public double getYError(){
+        Vector2D endPoint = pathoperator.getPointOnFollowable(pathoperator.getLastPoint());
+
+        return Math.abs(endPoint.getY() - robotPositionVector.getY());
     }
 
     private double getTurnPower(double targetHeading, double currentHeading){

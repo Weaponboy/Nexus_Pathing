@@ -433,7 +433,23 @@
       <option name="project" value="LOCAL" />
       <updated>1732204673764</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="v2.0.8: Updating I end targeting, got real robot velocities">
+      <option name="closed" value="true" />
+      <created>1732205171093</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1732205171093</updated>
+    </task>
+    <task id="LOCAL-00035" summary="v2.0.8: Updating I end targeting, got real robot velocities">
+      <option name="closed" value="true" />
+      <created>1732205186380</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1732205186380</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
