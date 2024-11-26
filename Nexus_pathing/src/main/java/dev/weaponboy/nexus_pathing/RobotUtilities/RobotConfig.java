@@ -25,8 +25,8 @@ public class RobotConfig {
     double Y_P_PATH_COR = 0.08;
     double Y_D_PATH_COR = 0.0001;
 
-    double HEADING_P_LARGE = 0.015;
-    double  HEADING_D_LARGE = 0.0005;
+    double HEADING_P_LARGE = 0.018;
+    double HEADING_D_LARGE = 0.0005;
 
     double HEADING_P_SMALL = 0.01;
     double HEADING_D_SMALL = 0.0008;
