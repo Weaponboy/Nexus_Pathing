@@ -32,7 +32,7 @@ public class RobotConfig {
     double HEADING_D_SMALL = 0.0008;
 
     double MAX_X_VELOCITY = 183;
-    double MAX_Y_VELOCITY = 136;
+    double MAX_Y_VELOCITY = 125;
 
     double MAX_X_ACCELERATION = 140;
     double MAX_Y_ACCELERATION = 90;
