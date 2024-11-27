@@ -80,7 +80,7 @@ public class follower {
             yI = 0;
         }
 
-        if (Math.hypot(XError, YError) < 4){
+        if (Math.hypot(XError, YError) < 2){
             correctiveXFinalAdjustment.setI(xI);
             correctiveYFinalAdjustment.setI(yI);
 
