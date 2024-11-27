@@ -81,8 +81,8 @@ public class follower {
         }
 
         if (Math.hypot(XError, YError) < 2){
-            correctiveXFinalAdjustment.setI(xI);
-            correctiveYFinalAdjustment.setI(yI);
+//            correctiveXFinalAdjustment.setI(xI);
+//            correctiveYFinalAdjustment.setI(yI);
 
             double XErrorGlobal = (YError) * Math.sin(Math.toRadians(H)) + (XError) * Math.cos(Math.toRadians(H));
             double YErrorGlobal = (YError) * Math.cos(Math.toRadians(H)) - (XError) * Math.sin(Math.toRadians(H));
