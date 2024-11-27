@@ -42,11 +42,23 @@ public class follower {
     }
 
     public static void main(String[] args) {
-        double XErrorGlobal = (5) * Math.sin(Math.toRadians(180)) + (5) * Math.cos(Math.toRadians(180));
-        double YErrorGlobal = (5) * Math.cos(Math.toRadians(180)) - (5) * Math.sin(Math.toRadians(180));
-        System.out.println(correctiveXFinalAdjustment.calculate(XErrorGlobal));
-        System.out.println(correctiveYFinalAdjustment.calculate(YErrorGlobal));
-        System.out.println();
+
+        double kyfull = 1/config.MAX_Y_VELOCITY();
+        double kxfull = 1/config.MAX_X_VELOCITY();
+
+        double ky = 1/config.MAX_X_VELOCITY();
+        double kx = 1/(config.MAX_X_VELOCITY()*(config.MAX_X_VELOCITY()/ config.MAX_Y_VELOCITY()));
+
+//        double XErrorGlobal = (5) * Math.sin(Math.toRadians(180)) + (5) * Math.cos(Math.toRadians(180));
+//        double YErrorGlobal = (5) * Math.cos(Math.toRadians(180)) - (5) * Math.sin(Math.toRadians(180));
+//        System.out.println(correctiveXFinalAdjustment.calculate(XErrorGlobal));
+//        System.out.println(correctiveYFinalAdjustment.calculate(YErrorGlobal));
+
+        System.out.println("kyfull: " + 183*kyfull);
+        System.out.println("kxfull: " + 183*kxfull);
+        System.out.println("ky: " + 183*ky);
+        System.out.println("kx: " + 183*kx);
+
     }
 
     public RobotPower followPathAuto(double targetHeading, double H, double X, double Y, double XV, double YV){
