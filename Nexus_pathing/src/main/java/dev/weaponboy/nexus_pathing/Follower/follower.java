@@ -41,13 +41,13 @@ public class follower {
         pathoperator.getRobotPositionOnPathFullPath(robotPos);
     }
 
-//    public static void main(String[] args) {
-//        double XErrorGlobal = (5) * Math.sin(Math.toRadians(180)) + (5) * Math.cos(Math.toRadians(180));
-//        double YErrorGlobal = (5) * Math.cos(Math.toRadians(180)) - (5) * Math.sin(Math.toRadians(180));
-//        System.out.println(correctiveXFinalAdjustment.calculate(XErrorGlobal));
-//        System.out.println(correctiveYFinalAdjustment.calculate(YErrorGlobal));
-//        System.out.println();
-//    }
+    public static void main(String[] args) {
+        double XErrorGlobal = (5) * Math.sin(Math.toRadians(180)) + (5) * Math.cos(Math.toRadians(180));
+        double YErrorGlobal = (5) * Math.cos(Math.toRadians(180)) - (5) * Math.sin(Math.toRadians(180));
+        System.out.println(correctiveXFinalAdjustment.calculate(XErrorGlobal));
+        System.out.println(correctiveYFinalAdjustment.calculate(YErrorGlobal));
+        System.out.println();
+    }
 
     public RobotPower followPathAuto(double targetHeading, double H, double X, double Y, double XV, double YV){
 
