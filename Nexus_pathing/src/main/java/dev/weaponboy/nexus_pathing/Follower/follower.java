@@ -43,11 +43,11 @@ public class follower {
 
     public static void main(String[] args) {
 
-        double kyfull = 1/config.MAX_Y_VELOCITY();
+        double kyfull = (double) 1 / 90;
         double kxfull = 1/config.MAX_X_VELOCITY();
 
         double ky = 1/config.MAX_X_VELOCITY();
-        double kx = 1/(config.MAX_X_VELOCITY()*(config.MAX_X_VELOCITY()/ config.MAX_Y_VELOCITY()));
+        double kx = 1/(config.MAX_X_VELOCITY()*(config.MAX_X_VELOCITY() / config.MAX_Y_VELOCITY()));
 
 //        double XErrorGlobal = (5) * Math.sin(Math.toRadians(180)) + (5) * Math.cos(Math.toRadians(180));
 //        double YErrorGlobal = (5) * Math.cos(Math.toRadians(180)) - (5) * Math.sin(Math.toRadians(180));
@@ -92,7 +92,7 @@ public class follower {
             yI = 0;
         }
 
-        if (Math.hypot(XError, YError) < 2){
+        if (Math.hypot(XError, YError) < 3){
 //            correctiveXFinalAdjustment.setI(xI);
 //            correctiveYFinalAdjustment.setI(yI);
 
