@@ -150,7 +150,7 @@ public class follower {
         return Math.abs(endPoint.getY() - robotPositionVector.getY());
     }
 
-    private double getTurnPower(double targetHeading, double currentHeading){
+    public double getTurnPower(double targetHeading, double currentHeading){
 
         double turnPower;
 
