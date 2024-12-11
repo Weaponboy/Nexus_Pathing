@@ -46,6 +46,7 @@ public class follower {
 
     public void setPath(pathBuilder path){
         pathFinished = false;
+        forceStop = false;
         pathoperator = new pathOperator(path.followablePath, path.pathingVelocity);
     }
 
@@ -124,9 +125,8 @@ public class follower {
 
             if (forceStopTimer.milliseconds() > 200){
 
-                Vector2D endPoint = pathoperator.getPointOnFollowable(pathoperator.getLastPoint());
-                double XError = endPoint.getX() - X;
-                double YError = endPoint.getY() - Y;
+                double XError = forceStopPoint.getX() - X;
+                double YError = forceStopPoint.getY() - Y;
 
                 double XErrorGlobal = (YError) * Math.sin(Math.toRadians(H)) + (XError) * Math.cos(Math.toRadians(H));
                 double YErrorGlobal = (YError) * Math.cos(Math.toRadians(H)) - (XError) * Math.sin(Math.toRadians(H));
