@@ -1,5 +1,7 @@
 package dev.weaponboy.nexus_pathing.Follower;
 
+import com.qualcomm.robotcore.util.ElapsedTime;
+
 import dev.weaponboy.nexus_pathing.PathGeneration.pathBuilder;
 import dev.weaponboy.nexus_pathing.PathingUtility.PathingPower;
 import dev.weaponboy.nexus_pathing.PathingUtility.PathingVelocity;
@@ -11,6 +13,16 @@ import dev.weaponboy.nexus_pathing.RobotUtilities.Vector2D;
 public class follower {
 
     boolean pathFinished = false;
+
+    boolean forceStop = false;
+    Vector2D forceStopPoint = null;
+    ElapsedTime forceStopTimer = new ElapsedTime();
+
+    public void setExtendoHeading(boolean extendoHeading) {
+        this.extendoHeading = extendoHeading;
+    }
+
+    boolean extendoHeading = false;
 
     pathOperator pathoperator;
 
@@ -63,55 +75,86 @@ public class follower {
 
     public RobotPower followPathAuto(double targetHeading, double H, double X, double Y, double XV, double YV){
 
-        Vector2D targetPoint = pathoperator.getPointOnFollowable(pathoperator.getLastPoint());
+        double Xpower;
+        double Ypower;
 
-        robotPositionVector.set(X, Y);
+        if (!forceStop){
+            robotPositionVector.set(X, Y);
 
-        PathingPower correctivePower = new PathingPower();
-        PathingPower pathingPower;
+            PathingPower correctivePower = new PathingPower();
+            PathingPower pathingPower;
 
-        Vector2D endPoint = pathoperator.getPointOnFollowable(pathoperator.getLastPoint());
-        double XError = endPoint.getX() - X;
-        double YError = endPoint.getY() - Y;
+            Vector2D endPoint = pathoperator.getPointOnFollowable(pathoperator.getLastPoint());
+            double XError = endPoint.getX() - X;
+            double YError = endPoint.getY() - Y;
 
 
-        if (!isFinished() && Math.abs(XV) < 3 && Math.abs(YV) < 3){
-            if(Math.abs(XV) < 3 && Math.abs(XError) > 1){
-                xI += 0.002;
-            }else {
+            if (!isFinished() && Math.abs(XV) < 3 && Math.abs(YV) < 3) {
+                if (Math.abs(XV) < 3 && Math.abs(XError) > 1) {
+                    xI += 0.002;
+                } else {
+                    xI = 0;
+                }
+
+                if (Math.abs(YV) < 3 && Math.abs(YError) > 1) {
+                    yI += 0.002;
+                } else {
+                    yI = 0;
+                }
+            } else {
                 xI = 0;
-            }
-
-            if(Math.abs(YV) < 3 && Math.abs(YError) > 1){
-                yI += 0.002;
-            }else {
                 yI = 0;
             }
+
+            if (Math.hypot(XError, YError) < 3) {
+                //            correctiveXFinalAdjustment.setI(xI);
+                //            correctiveYFinalAdjustment.setI(yI);
+
+                double XErrorGlobal = (YError) * Math.sin(Math.toRadians(H)) + (XError) * Math.cos(Math.toRadians(H));
+                double YErrorGlobal = (YError) * Math.cos(Math.toRadians(H)) - (XError) * Math.sin(Math.toRadians(H));
+
+                pathingPower = new PathingPower(correctiveXFinalAdjustment.calculate(XErrorGlobal), correctiveYFinalAdjustment.calculate(YErrorGlobal));
+            } else {
+                pathingPower = getPathingPower(robotPositionVector, XV, YV, H);
+            }
+
+            Xpower = correctivePower.getVertical() + pathingPower.getVertical();
+            Ypower = correctivePower.getHorizontal() + pathingPower.getHorizontal();
         }else {
-            xI = 0;
-            yI = 0;
+
+            if (forceStopTimer.milliseconds() > 200){
+
+                Vector2D endPoint = pathoperator.getPointOnFollowable(pathoperator.getLastPoint());
+                double XError = endPoint.getX() - X;
+                double YError = endPoint.getY() - Y;
+
+                double XErrorGlobal = (YError) * Math.sin(Math.toRadians(H)) + (XError) * Math.cos(Math.toRadians(H));
+                double YErrorGlobal = (YError) * Math.cos(Math.toRadians(H)) - (XError) * Math.sin(Math.toRadians(H));
+
+                Xpower = correctiveXFinalAdjustment.calculate(XErrorGlobal);
+                Ypower = correctiveYFinalAdjustment.calculate(YErrorGlobal);
+
+            }else {
+                double kyfull = 1/config.MAX_Y_VELOCITY();
+                double kxfull = 1/config.MAX_X_VELOCITY();
+
+                Xpower = -(XV * kxfull);
+                Ypower = -(YV * kyfull);
+            }
+
         }
-
-        if (Math.hypot(XError, YError) < 3){
-//            correctiveXFinalAdjustment.setI(xI);
-//            correctiveYFinalAdjustment.setI(yI);
-
-            double XErrorGlobal = (YError) * Math.sin(Math.toRadians(H)) + (XError) * Math.cos(Math.toRadians(H));
-            double YErrorGlobal = (YError) * Math.cos(Math.toRadians(H)) - (XError) * Math.sin(Math.toRadians(H));
-
-            pathingPower = new PathingPower(correctiveXFinalAdjustment.calculate(XErrorGlobal), correctiveYFinalAdjustment.calculate(YErrorGlobal));
-        }else {
-            pathingPower = getPathingPower(robotPositionVector, XV, YV, H);
-        }
-
-        double Xpower = correctivePower.getVertical() + pathingPower.getVertical();
-        double Ypower = correctivePower.getHorizontal() + pathingPower.getHorizontal();
 
         return new RobotPower(Xpower, Ypower, getTurnPower(targetHeading, H));
     }
 
     public void finishPath(){
         pathFinished = true;
+    }
+
+    public void forceStop(){
+        forceStopPoint = robotPositionVector;
+        forceStop = true;
+        forceStopTimer.reset();
     }
 
     public boolean isFinished(){
@@ -162,7 +205,12 @@ public class follower {
             rotdist = (rotdist - 360);
         }
 
-        turnPower = largeHeadingPID.calculate(-rotdist);
+        if (extendoHeading){
+            turnPower = largeHeadingPID.calculate(-rotdist);
+        }else {
+            turnPower = smallHeadingPID.calculate(-rotdist);
+        }
+
 //        if (Math.abs(rotdist) > 20){
 //            c
 //        }else {
