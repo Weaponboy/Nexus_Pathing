@@ -28,8 +28,8 @@ public class RobotConfig {
     double HEADING_P_LARGE = 0.022;
     double HEADING_D_LARGE = 0.0005;
 
-    double HEADING_P_SMALL = 0.015;
-    double HEADING_D_SMALL = 0.0003;
+    double HEADING_P_SMALL = 0.009;
+    double HEADING_D_SMALL = 0.0002;
 
     double MAX_X_VELOCITY = 183;
     double MAX_Y_VELOCITY = 120;
