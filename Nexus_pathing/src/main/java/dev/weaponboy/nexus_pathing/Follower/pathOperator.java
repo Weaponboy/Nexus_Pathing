@@ -12,6 +12,8 @@ public class pathOperator {
 
     ArrayList<PathingVelocity> pathingVelocity;
 
+    ArrayList<Double> targetHeadings;
+
     ArrayList<Vector2D> pathCurve;
 
     int lastPointOnPath;
@@ -21,6 +23,14 @@ public class pathOperator {
         this.pathingVelocity = pathingVelocity;
         this.pathCurve = calculateCurvatureVectors(followablePath);
     }
+
+    public pathOperator(ArrayList<Vector2D> followablePath, ArrayList<PathingVelocity> pathingVelocity, ArrayList<Double> targetHeadings){
+        this.followablePath = followablePath;
+        this.pathingVelocity = pathingVelocity;
+        this.targetHeadings = targetHeadings;
+        this.pathCurve = calculateCurvatureVectors(followablePath);
+    }
+
 
     private static ArrayList<Vector2D> computeFirstDerivatives(ArrayList<Vector2D> points) {
         int numPoints = points.size();

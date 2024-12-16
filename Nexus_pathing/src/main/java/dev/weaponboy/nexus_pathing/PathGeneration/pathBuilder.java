@@ -16,6 +16,8 @@ public class pathBuilder {
 
     public ArrayList<Vector2D> followablePath = new ArrayList<>();
 
+    public ArrayList<Double> headingTargets = new ArrayList<>();
+
     public ArrayList<PathingVelocity> pathingVelocity = new ArrayList<>();
 
     RobotConfig robotConfig = new RobotConfig();
@@ -31,6 +33,8 @@ public class pathBuilder {
         smoothPath(bezierPoints);
 
         motionProfile();
+
+        calculateHeadings();
 
     }
 
@@ -177,6 +181,21 @@ public class pathBuilder {
         }
 
         System.out.println("generated motion profile");
+
+    }
+
+    public void calculateHeadings() {
+
+        for (int i = 1; i < followablePath.size(); i++) {
+            Vector2D prevPoint = followablePath.get(i - 1);
+            Vector2D currentPoint = followablePath.get(i);
+
+            double dx = currentPoint.getX() - prevPoint.getX();
+            double dy = currentPoint.getY() - prevPoint.getY();
+
+            double heading = Math.atan2(dy, dx);
+            headingTargets.add(Math.toDegrees(heading));
+        }
 
     }
 

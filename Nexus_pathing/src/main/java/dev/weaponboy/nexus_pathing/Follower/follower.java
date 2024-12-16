@@ -43,35 +43,22 @@ public class follower {
     PIDController smallHeadingPID = new PIDController(config.getHEADING_P_SMALL(), 0, config.getHEADING_D_SMALL());
 
     Vector2D robotPositionVector = new Vector2D();
+    int currentIndex = 0;
+
+    public void usePathHeadings(boolean usePathHeadings) {
+        this.usePathHeadings = usePathHeadings;
+    }
+
+    boolean usePathHeadings = false;
 
     public void setPath(pathBuilder path){
         pathFinished = false;
         forceStop = false;
-        pathoperator = new pathOperator(path.followablePath, path.pathingVelocity);
+        pathoperator = new pathOperator(path.followablePath, path.pathingVelocity, path.headingTargets);
     }
 
     public void resetClosestPoint(Vector2D robotPos){
         pathoperator.getRobotPositionOnPathFullPath(robotPos);
-    }
-
-    public static void main(String[] args) {
-
-        double kyfull = (double) 1 / 90;
-        double kxfull = 1/config.MAX_X_VELOCITY();
-
-        double ky = 1/config.MAX_X_VELOCITY();
-        double kx = 1/(config.MAX_X_VELOCITY()*(config.MAX_X_VELOCITY() / config.MAX_Y_VELOCITY()));
-
-//        double XErrorGlobal = (5) * Math.sin(Math.toRadians(180)) + (5) * Math.cos(Math.toRadians(180));
-//        double YErrorGlobal = (5) * Math.cos(Math.toRadians(180)) - (5) * Math.sin(Math.toRadians(180));
-//        System.out.println(correctiveXFinalAdjustment.calculate(XErrorGlobal));
-//        System.out.println(correctiveYFinalAdjustment.calculate(YErrorGlobal));
-
-        System.out.println("kyfull: " + 183*kyfull);
-        System.out.println("kxfull: " + 183*kxfull);
-        System.out.println("ky: " + 183*ky);
-        System.out.println("kx: " + 183*kx);
-
     }
 
     public RobotPower followPathAuto(double targetHeading, double H, double X, double Y, double XV, double YV){
@@ -108,8 +95,8 @@ public class follower {
             }
 
             if (Math.hypot(XError, YError) < 3) {
-                //            correctiveXFinalAdjustment.setI(xI);
-                //            correctiveYFinalAdjustment.setI(yI);
+                correctiveXFinalAdjustment.setI(xI);
+                correctiveYFinalAdjustment.setI(yI);
 
                 double XErrorGlobal = (YError) * Math.sin(Math.toRadians(H)) + (XError) * Math.cos(Math.toRadians(H));
                 double YErrorGlobal = (YError) * Math.cos(Math.toRadians(H)) - (XError) * Math.sin(Math.toRadians(H));
@@ -144,7 +131,12 @@ public class follower {
 
         }
 
-        return new RobotPower(Xpower, Ypower, getTurnPower(targetHeading, H));
+        if (usePathHeadings){
+            return new RobotPower(Xpower, Ypower, getTurnPower(pathoperator.targetHeadings.get(currentIndex), H));
+        }else {
+            return new RobotPower(Xpower, Ypower, getTurnPower(targetHeading, H));
+        }
+
     }
 
     public void finishPath(){
@@ -233,6 +225,8 @@ public class follower {
 
         int closestPos = pathoperator.getRobotPositionOnPath(robotPos);
         PathingVelocity targetVelocity = pathoperator.getTargetVelocity(closestPos);
+
+        currentIndex = closestPos;
 
         double curveY = Math.abs(YVelo*1.2)/2;
         double curveX = Math.abs(XVelo*1.2)/2;
