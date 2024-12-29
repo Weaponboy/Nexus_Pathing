@@ -26,10 +26,11 @@ public class RobotConfig {
     double Y_D_PATH_COR = 0.0001;
 
     double HEADING_P_LARGE = 0.022;
-    double HEADING_D_LARGE = 0.001;
+    double HEADING_D_LARGE = 0.0005;
 
     double HEADING_P_SMALL = 0.009;
-    double HEADING_D_SMALL = 0.0008;
+    double HEADING_D_SMALL = 0.0002;
+
 
     double MAX_X_VELOCITY = 183;
     double MAX_Y_VELOCITY = 120;
