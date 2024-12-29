@@ -125,7 +125,7 @@
       <recent name="C:\Users\User\AndroidStudioProjects\Nexus_Pathing\Nexus_pathing\src\main\java\dev\weaponboy\nexus_pathing\PathGeneration\commands" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.follower">
+  <component name="RunManager" selected="Application.Testing">
     <configuration name="Testing" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dev.weaponboy.nexus_pathing.Testing" />
       <module name="Nexus.Nexus_pathing.main" />
@@ -154,8 +154,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.follower" />
         <item itemvalue="Application.Testing" />
+        <item itemvalue="Application.follower" />
       </list>
     </recent_temporary>
   </component>
@@ -167,14 +167,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1719423865938</updated>
-    </task>
-    <task id="LOCAL-00017" summary="v1.0.6: Updating I end targeting, got real robot velocities">
-      <option name="closed" value="true" />
-      <created>1730263147903</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1730263147903</updated>
     </task>
     <task id="LOCAL-00018" summary="v1.0.6: Updating I end targeting, got real robot velocities">
       <option name="closed" value="true" />
@@ -560,7 +552,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734342598832</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="v3.3.5 Added using paths target headings">
+      <option name="closed" value="true" />
+      <created>1734360101507</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1734360101507</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
