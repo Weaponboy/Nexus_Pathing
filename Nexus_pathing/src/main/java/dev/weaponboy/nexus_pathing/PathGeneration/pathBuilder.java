@@ -101,8 +101,6 @@ public class pathBuilder {
 
         double accelDistance = (robotConfig.MAX_X_VELOCITY() * robotConfig.MAX_X_VELOCITY()) / (robotConfig.MAX_X_ACCELERATION()*2);
 
-        double acceleration_dt = robotConfig.MAX_X_VELOCITY() / robotConfig.MAX_X_ACCELERATION();
-
         // If we can't accelerate to max velocity in the given distance, we'll accelerate as much as possible
         double halfway_distance = pathLength/2;
 

@@ -16,6 +16,13 @@ public class follower {
 
     boolean forceStop = false;
     Vector2D forceStopPoint = null;
+
+    double velocityAtStopX = 0;
+    double velocityAtStopY = 0;
+
+    double velocityX = 0;
+    double velocityY = 0;
+
     ElapsedTime forceStopTimer = new ElapsedTime();
 
     public void setExtendoHeading(boolean extendoHeading) {
@@ -66,16 +73,41 @@ public class follower {
         double Xpower;
         double Ypower;
 
-        if (!forceStop){
-            robotPositionVector.set(X, Y);
+        velocityX = XV;
+        velocityY = YV;
 
-            PathingPower correctivePower = new PathingPower();
-            PathingPower pathingPower;
+        robotPositionVector.set(X, Y);
 
-            Vector2D endPoint = pathoperator.getPointOnFollowable(pathoperator.getLastPoint());
-            double XError = endPoint.getX() - X;
-            double YError = endPoint.getY() - Y;
+        PathingPower correctivePower = new PathingPower();
+        PathingPower pathingPower;
 
+        Vector2D endPoint = pathoperator.getPointOnFollowable(pathoperator.getLastPoint());
+        double XError = endPoint.getX() - X;
+        double YError = endPoint.getY() - Y;
+
+        if (pathFinished){
+
+            if (forceStopTimer.milliseconds() > 600){
+
+                XError = forceStopPoint.getX() - X;
+                YError = forceStopPoint.getY() - Y;
+
+                double XErrorGlobal = (YError) * Math.sin(Math.toRadians(H)) + (XError) * Math.cos(Math.toRadians(H));
+                double YErrorGlobal = (YError) * Math.cos(Math.toRadians(H)) - (XError) * Math.sin(Math.toRadians(H));
+
+                Xpower = correctiveXFinalAdjustment.calculate(XErrorGlobal);
+                Ypower = correctiveYFinalAdjustment.calculate(YErrorGlobal);
+
+            }else {
+                double kyfull = 1/config.MAX_Y_VELOCITY();
+                double kxfull = 1/config.MAX_X_VELOCITY();
+
+                Xpower = -(velocityAtStopX * kxfull);
+                Ypower = -(velocityAtStopY * kyfull);
+            }
+
+
+        }else {
 
             if (!isFinished() && Math.abs(XV) < 3 && Math.abs(YV) < 3) {
                 if (Math.abs(XV) < 3 && Math.abs(XError) > 1) {
@@ -108,27 +140,6 @@ public class follower {
 
             Xpower = correctivePower.getVertical() + pathingPower.getVertical();
             Ypower = correctivePower.getHorizontal() + pathingPower.getHorizontal();
-        }else {
-
-            if (forceStopTimer.milliseconds() > 200){
-
-                double XError = forceStopPoint.getX() - X;
-                double YError = forceStopPoint.getY() - Y;
-
-                double XErrorGlobal = (YError) * Math.sin(Math.toRadians(H)) + (XError) * Math.cos(Math.toRadians(H));
-                double YErrorGlobal = (YError) * Math.cos(Math.toRadians(H)) - (XError) * Math.sin(Math.toRadians(H));
-
-                Xpower = correctiveXFinalAdjustment.calculate(XErrorGlobal);
-                Ypower = correctiveYFinalAdjustment.calculate(YErrorGlobal);
-
-            }else {
-                double kyfull = 1/config.MAX_Y_VELOCITY();
-                double kxfull = 1/config.MAX_X_VELOCITY();
-
-                Xpower = -(XV * kxfull);
-                Ypower = -(YV * kyfull);
-            }
-
         }
 
         if (usePathHeadings){
@@ -141,11 +152,9 @@ public class follower {
 
     public void finishPath(){
         pathFinished = true;
-    }
-
-    public void forceStop(){
         forceStopPoint = robotPositionVector;
-        forceStop = true;
+        velocityAtStopX = velocityX;
+        velocityAtStopY = velocityY;
         forceStopTimer.reset();
     }
 
@@ -161,6 +170,10 @@ public class follower {
         Vector2D endPoint = pathoperator.getPointOnFollowable(pathoperator.getLastPoint());
         double XError = Math.abs(endPoint.getX() - robotPositionVector.getX());
         double YError = Math.abs(endPoint.getY() - robotPositionVector.getY());
+
+        if (!pathFinished && XError < XTol && YError < YTol){
+            pathFinished = true;
+        }
 
         return XError < XTol && YError < YTol || pathFinished;
     }

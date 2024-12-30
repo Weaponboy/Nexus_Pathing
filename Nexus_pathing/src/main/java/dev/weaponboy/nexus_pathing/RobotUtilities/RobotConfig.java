@@ -35,7 +35,7 @@ public class RobotConfig {
     double MAX_X_VELOCITY = 183;
     double MAX_Y_VELOCITY = 120;
 
-    double MAX_X_ACCELERATION = 160;
+    double MAX_X_ACCELERATION = 250;
     double MAX_Y_ACCELERATION = 90;
 
     public RobotConfig() {}
