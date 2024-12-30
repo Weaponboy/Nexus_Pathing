@@ -173,6 +173,7 @@ public class follower {
 
         if (!pathFinished && XError < XTol && YError < YTol){
             pathFinished = true;
+            forceStopPoint = robotPositionVector;
         }
 
         return XError < XTol && YError < YTol || pathFinished;
