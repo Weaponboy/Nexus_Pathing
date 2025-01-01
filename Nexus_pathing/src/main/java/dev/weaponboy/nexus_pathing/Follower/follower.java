@@ -142,8 +142,14 @@ public class follower {
             Ypower = correctivePower.getHorizontal() + pathingPower.getHorizontal();
         }
 
+        int lookAheadIndex = currentIndex += 20;
+
+        if (lookAheadIndex > pathoperator.targetHeadings.size()-1){
+            lookAheadIndex = pathoperator.targetHeadings.size();
+        }
+
         if (usePathHeadings){
-            return new RobotPower(Xpower, Ypower, getTurnPower(pathoperator.targetHeadings.get(currentIndex), H));
+            return new RobotPower(Xpower, Ypower, getTurnPower(pathoperator.targetHeadings.get(lookAheadIndex), H));
         }else {
             return new RobotPower(Xpower, Ypower, getTurnPower(targetHeading, H));
         }
