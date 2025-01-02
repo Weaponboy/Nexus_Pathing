@@ -145,7 +145,7 @@ public class follower {
         int lookAheadIndex = currentIndex += 20;
 
         if (lookAheadIndex > pathoperator.targetHeadings.size()-1){
-            lookAheadIndex = pathoperator.targetHeadings.size();
+            lookAheadIndex = pathoperator.targetHeadings.size()-1;
         }
 
         if (usePathHeadings){
