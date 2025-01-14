@@ -38,6 +38,8 @@ public class follower {
     double yI = 0;
     double xI = 0;
 
+    double headingI = 0;
+
     boolean gotToEnd = false;
 
     PIDController xerror = new PIDController(config.getX_P_PATH_COR(), 0, config.getX_D_PATH_COR());
@@ -210,6 +212,15 @@ public class follower {
         double turnPower;
 
         double rotdist = (targetHeading - currentHeading);
+
+        if (Math.abs(rotdist) > 5 && velocityX < 10 && velocityY < 10){
+            headingI += 0.01;
+        }else {
+            headingI = 0;
+        }
+
+        smallHeadingPID.setI(headingI);
+        largeHeadingPID.setI(headingI);
 
         if (rotdist < -180) {
             rotdist = (360 + rotdist);
