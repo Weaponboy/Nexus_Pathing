@@ -253,8 +253,8 @@ public class follower {
 
         double rotdist = (targetHeading - currentHeading);
 
-        if (Math.abs(rotdist) > 5 && Math.abs(Xvelo) < 3 && Math.abs(Yvelo) < 3){
-            headingI += 0.0000001;
+        if (Math.abs(rotdist) > 5 && Math.abs(Xvelo) < 5 && Math.abs(Yvelo) < 5){
+            headingI += 0.00001;
 
 //            if (headingI > 5){
 //                headingI = 5;
