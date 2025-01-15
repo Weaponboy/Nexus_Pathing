@@ -170,22 +170,6 @@
       <option name="presentableId" value="Default" />
       <updated>1719423865938</updated>
     </task>
-    <task id="LOCAL-00028" summary="v2.0.8: Updating I end targeting, got real robot velocities">
-      <option name="closed" value="true" />
-      <created>1732201922870</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1732201922870</updated>
-    </task>
-    <task id="LOCAL-00029" summary="v2.0.8: Updating I end targeting, got real robot velocities">
-      <option name="closed" value="true" />
-      <created>1732202426267</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1732202426267</updated>
-    </task>
     <task id="LOCAL-00030" summary="v2.0.8: Updating I end targeting, got real robot velocities">
       <option name="closed" value="true" />
       <created>1732202839636</created>
@@ -562,7 +546,23 @@
       <option name="project" value="LOCAL" />
       <updated>1736885412241</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="Added Integral into heading PID's">
+      <option name="closed" value="true" />
+      <created>1736918934436</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1736918934436</updated>
+    </task>
+    <task id="LOCAL-00078" summary="Added Integral into heading PID's">
+      <option name="closed" value="true" />
+      <created>1736919019963</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1736919019963</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
