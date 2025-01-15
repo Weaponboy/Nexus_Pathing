@@ -215,6 +215,10 @@ public class follower {
 
         if (Math.abs(rotdist) > 5 && Math.abs(velocityX) < 3 && Math.abs(velocityY) < 3){
             headingI += 0.0000001;
+
+            if (headingI > 0.01){
+                headingI = 0.01;
+            }
         }else {
             headingI = 0;
         }
