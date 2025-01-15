@@ -170,14 +170,6 @@
       <option name="presentableId" value="Default" />
       <updated>1719423865938</updated>
     </task>
-    <task id="LOCAL-00038" summary="v3.1.0: Reduced end adjustment and pid values">
-      <option name="closed" value="true" />
-      <created>1732559087767</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1732559087767</updated>
-    </task>
     <task id="LOCAL-00039" summary="v3.1.0: Reduced end adjustment and pid values">
       <option name="closed" value="true" />
       <created>1732561355608</created>
@@ -562,7 +554,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736933568804</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="Added Integral into heading PID's">
+      <option name="closed" value="true" />
+      <created>1736952441522</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1736952441522</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
