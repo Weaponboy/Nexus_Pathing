@@ -170,14 +170,6 @@
       <option name="presentableId" value="Default" />
       <updated>1719423865938</updated>
     </task>
-    <task id="LOCAL-00032" summary="v2.0.8: Updating I end targeting, got real robot velocities">
-      <option name="closed" value="true" />
-      <created>1732203780387</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1732203780387</updated>
-    </task>
     <task id="LOCAL-00033" summary="v2.0.8: Updating I end targeting, got real robot velocities">
       <option name="closed" value="true" />
       <created>1732204673764</created>
@@ -562,7 +554,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736922373664</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="Added Integral into heading PID's">
+      <option name="closed" value="true" />
+      <created>1736923646266</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1736923646266</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
