@@ -247,6 +247,46 @@ public class follower {
         return turnPower;
     }
 
+    public double getTurnPower(double targetHeading, double currentHeading, double Xvelo, double Yvelo){
+
+        double turnPower;
+
+        double rotdist = (targetHeading - currentHeading);
+
+        if (Math.abs(rotdist) > 5 && Math.abs(Xvelo) < 3 && Math.abs(Yvelo) < 3){
+            headingI += 0.0000001;
+
+            if (headingI > 5){
+                headingI = 5;
+            }
+        }else {
+            headingI = 0;
+        }
+
+        smallHeadingPID.setI(headingI);
+        largeHeadingPID.setI(headingI);
+
+        if (rotdist < -180) {
+            rotdist = (360 + rotdist);
+        } else if (rotdist > 180) {
+            rotdist = (rotdist - 360);
+        }
+
+        if (extendoHeading){
+            turnPower = largeHeadingPID.calculate(-rotdist);
+        }else {
+            turnPower = smallHeadingPID.calculate(-rotdist);
+        }
+
+//        if (Math.abs(rotdist) > 20){
+//            c
+//        }else {
+//            turnPower = smallHeadingPID.calculate(-rotdist);
+//        }
+
+        return turnPower;
+    }
+
     private PathingPower getPathingPower(Vector2D robotPos, double XVelo, double YVelo, double heading){
 
         Vector2D error;
