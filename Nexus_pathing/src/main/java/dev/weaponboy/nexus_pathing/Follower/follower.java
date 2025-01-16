@@ -213,7 +213,7 @@ public class follower {
 
         double rotdist = (targetHeading - currentHeading);
 
-        if (Math.abs(rotdist) > 4 && Math.abs(velocityX) < 3 && Math.abs(velocityY) < 3){
+        if (Math.abs(rotdist) > 5 && Math.abs(velocityX) < 3 && Math.abs(velocityY) < 3){
             headingI += 0.00005;
         }else {
             headingI = 0;
@@ -249,7 +249,7 @@ public class follower {
 
         double rotdist = (targetHeading - currentHeading);
 
-        if (Math.abs(rotdist) > 4 && Math.abs(Xvelo) < 3 && Math.abs(Yvelo) < 3){
+        if (Math.abs(rotdist) > 5 && Math.abs(Xvelo) < 3 && Math.abs(Yvelo) < 3){
             headingI += 0.00005;
 
 //            if (headingI > 5){
