@@ -174,6 +174,11 @@ public class follower {
         return XError < 1 && YError < 1 || pathFinished;
     }
 
+    public void setI(double I){
+        largeHeadingPID.setI(I);
+        smallHeadingPID.setI(I);
+    }
+
     public boolean isFinished(double XTol, double YTol){
         Vector2D endPoint = pathoperator.getPointOnFollowable(pathoperator.getLastPoint());
         double XError = Math.abs(endPoint.getX() - robotPositionVector.getX());
@@ -215,12 +220,12 @@ public class follower {
 
 //        if (Math.abs(rotdist) > 5 && Math.abs(velocityX) < 3 && Math.abs(velocityY) < 3){
 //            headingI -= 0.00005;
-//        }else {
-            headingI = 0;
-//        }
-
-        smallHeadingPID.setI(headingI);
-        largeHeadingPID.setI(headingI);
+////        }else {
+//            headingI = 0;
+////        }
+//
+//        smallHeadingPID.setI(headingI);
+//        largeHeadingPID.setI(headingI);
 
         if (rotdist < -180) {
             rotdist = (360 + rotdist);
@@ -249,18 +254,18 @@ public class follower {
 
         double rotdist = (targetHeading - currentHeading);
 
-        if (Math.abs(rotdist) > 5 && Math.abs(Xvelo) < 3 && Math.abs(Yvelo) < 3){
-            headingI -= 0.0005;
+//        if (Math.abs(rotdist) > 5 && Math.abs(Xvelo) < 3 && Math.abs(Yvelo) < 3){
+//            headingI -= 0.0005;
+//
+////            if (headingI > 5){
+////                headingI = 5;
+////            }
+//        }else {
+//            headingI = 0;
+//        }
 
-//            if (headingI > 5){
-//                headingI = 5;
-//            }
-        }else {
-            headingI = 0;
-        }
-
-        smallHeadingPID.setI(headingI);
-        largeHeadingPID.setI(headingI);
+//        smallHeadingPID.setI(headingI);
+//        largeHeadingPID.setI(headingI);
 
         if (rotdist < -180) {
             rotdist = (360 + rotdist);
