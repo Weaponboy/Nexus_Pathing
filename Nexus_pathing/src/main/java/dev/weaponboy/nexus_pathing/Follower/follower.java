@@ -356,13 +356,13 @@ public class follower {
 
         if (xDist > 2 && Math.abs(XVelocity) < 3){
             xDist += 0.2;
-        } else if (xDist < -1 && Math.abs(XVelocity) < 3) {
+        } else if (xDist < -2 && Math.abs(XVelocity) < 3) {
             xDist -= 0.2;
         }
 
         if (yDist > 2 && Math.abs(YVelocity) < 3){
             yDist += 0.2;
-        } else if (yDist < -1 && Math.abs(YVelocity) < 3) {
+        } else if (yDist < -2 && Math.abs(YVelocity) < 3) {
             yDist -= 0.2;
         }
 
