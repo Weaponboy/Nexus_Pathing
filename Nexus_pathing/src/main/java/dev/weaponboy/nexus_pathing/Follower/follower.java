@@ -354,13 +354,13 @@ public class follower {
         double xDist = error.getX();
         double yDist = error.getY();
 
-        if (xDist > 1 && Math.abs(XVelocity) < 3){
+        if (xDist > 1.5 && Math.abs(XVelocity) < 3){
             xDist += 0.5;
         } else if (xDist < -1 && Math.abs(XVelocity) < 3) {
             xDist -= 0.5;
         }
 
-        if (yDist > 1 && Math.abs(YVelocity) < 3){
+        if (yDist > 1.5 && Math.abs(YVelocity) < 3){
             yDist += 0.5;
         } else if (yDist < -1 && Math.abs(YVelocity) < 3) {
             yDist -= 0.5;
