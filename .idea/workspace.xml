@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1113699c-ae65-4143-8515-455206253754" name="Changes" comment="Added Integral into heading PID's">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/Follower/follower.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/Follower/follower.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,14 +170,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1719423865938</updated>
-    </task>
-    <task id="LOCAL-00044" summary="v3.1.4: tuning end corrective PIDs">
-      <option name="closed" value="true" />
-      <created>1732689758293</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1732689758293</updated>
     </task>
     <task id="LOCAL-00045" summary="v3.1.5: tuning end corrective PIDs">
       <option name="closed" value="true" />
@@ -562,7 +555,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737024711811</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="Added Integral into heading PID's">
+      <option name="closed" value="true" />
+      <created>1737026100631</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1737026100632</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

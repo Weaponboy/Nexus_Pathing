@@ -218,15 +218,6 @@ public class follower {
 
         double rotdist = (targetHeading - currentHeading);
 
-//        if (Math.abs(rotdist) > 5 && Math.abs(velocityX) < 3 && Math.abs(velocityY) < 3){
-//            headingI -= 0.00005;
-////        }else {
-//            headingI = 0;
-////        }
-//
-//        smallHeadingPID.setI(headingI);
-//        largeHeadingPID.setI(headingI);
-
         if (rotdist < -180) {
             rotdist = (360 + rotdist);
         } else if (rotdist > 180) {
@@ -238,12 +229,6 @@ public class follower {
         }else {
             turnPower = smallHeadingPID.calculate(-rotdist);
         }
-
-//        if (Math.abs(rotdist) > 20){
-//            c
-//        }else {
-//            turnPower = smallHeadingPID.calculate(-rotdist);
-//        }
 
         return turnPower;
     }
@@ -359,18 +344,27 @@ public class follower {
         return actualPathingPower;
     }
 
-    private PathingPower getCorrectivePowerAtEnd(Vector2D robotPos, Vector2D targetPos, double heading){
+    public PathingPower pidToPoint(Vector2D robotPos, Vector2D targetPos, double heading, double XVelocity, double YVelocity){
 
         Vector2D error;
         PathingPower correctivePower = new PathingPower();
-
-        correctiveXFinalAdjustment.setI(xI);
-        correctiveYFinalAdjustment.setI(yI);
 
         error = new Vector2D( targetPos.getX() - robotPos.getX(),  targetPos.getY() - robotPos.getY());
 
         double xDist = error.getX();
         double yDist = error.getY();
+
+        if (xDist > 1 && Math.abs(XVelocity) < 3){
+            xDist += 0.5;
+        } else if (xDist < -1 && Math.abs(XVelocity) < 3) {
+            xDist -= 0.5;
+        }
+
+        if (yDist > 1 && Math.abs(YVelocity) < 3){
+            yDist += 0.5;
+        } else if (yDist < -1 && Math.abs(YVelocity) < 3) {
+            yDist -= 0.5;
+        }
 
         double robotRelativeXError = yDist * Math.sin(Math.toRadians(heading)) + xDist * Math.cos(Math.toRadians(heading));
         double robotRelativeYError = yDist * Math.cos(Math.toRadians(heading)) - xDist * Math.sin(Math.toRadians(heading));
