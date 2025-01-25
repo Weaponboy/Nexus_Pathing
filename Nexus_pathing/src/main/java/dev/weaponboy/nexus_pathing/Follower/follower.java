@@ -354,17 +354,17 @@ public class follower {
         double xDist = error.getX();
         double yDist = error.getY();
 
-        if (xDist > 2 && Math.abs(XVelocity) < 3){
-            xDist += 0.2;
-        } else if (xDist < -2 && Math.abs(XVelocity) < 3) {
-            xDist -= 0.2;
-        }
-
-        if (yDist > 2 && Math.abs(YVelocity) < 3){
-            yDist += 0.2;
-        } else if (yDist < -2 && Math.abs(YVelocity) < 3) {
-            yDist -= 0.2;
-        }
+//        if (xDist > 2 && Math.abs(XVelocity) < 3){
+//            xDist += 0.2;
+//        } else if (xDist < -2 && Math.abs(XVelocity) < 3) {
+//            xDist -= 0.2;
+//        }
+//
+//        if (yDist > 2 && Math.abs(YVelocity) < 3){
+//            yDist += 0.2;
+//        } else if (yDist < -2 && Math.abs(YVelocity) < 3) {
+//            yDist -= 0.2;
+//        }
 
         double robotRelativeXError = yDist * Math.sin(Math.toRadians(heading)) + xDist * Math.cos(Math.toRadians(heading));
         double robotRelativeYError = yDist * Math.cos(Math.toRadians(heading)) - xDist * Math.sin(Math.toRadians(heading));
