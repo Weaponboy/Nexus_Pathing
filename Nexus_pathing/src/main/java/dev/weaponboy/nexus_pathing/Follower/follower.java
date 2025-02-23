@@ -23,6 +23,12 @@ public class follower {
     double velocityX = 0;
     double velocityY = 0;
 
+    double headingOffset = 0;
+
+    public void setHeadingOffset(double headingOffset) {
+        this.headingOffset = headingOffset;
+    }
+
     public void setHeadingLookAheadDistance(int headingLookAheadDistance) {
         this.headingLookAheadDistance = headingLookAheadDistance;
     }
@@ -157,7 +163,7 @@ public class follower {
         }
 
         if (usePathHeadings){
-            return new RobotPower(Xpower, Ypower, getTurnPower(pathoperator.targetHeadings.get(lookAheadIndex), H));
+            return new RobotPower(Xpower, Ypower, getTurnPower(pathoperator.targetHeadings.get(lookAheadIndex) + headingOffset, H));
         }else {
             return new RobotPower(Xpower, Ypower, getTurnPower(targetHeading, H));
         }
