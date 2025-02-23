@@ -23,6 +23,12 @@ public class follower {
     double velocityX = 0;
     double velocityY = 0;
 
+    public void setHeadingLookAheadDistance(int headingLookAheadDistance) {
+        this.headingLookAheadDistance = headingLookAheadDistance;
+    }
+
+    int headingLookAheadDistance = 20;
+
     ElapsedTime forceStopTimer = new ElapsedTime();
 
     public void setExtendoHeading(boolean extendoHeading) {
@@ -144,7 +150,7 @@ public class follower {
             Ypower = correctivePower.getHorizontal() + pathingPower.getHorizontal();
         }
 
-        int lookAheadIndex = currentIndex += 20;
+        int lookAheadIndex = currentIndex += headingLookAheadDistance;
 
         if (lookAheadIndex > pathoperator.targetHeadings.size()-1){
             lookAheadIndex = pathoperator.targetHeadings.size()-1;
