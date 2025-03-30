@@ -150,7 +150,7 @@ public class pathBuilder {
 
                 pathingVelocity.add(pathVelo);
 
-                System.out.println("pathVelo deccel velocityXValue: " + velocityXValue);
+                System.out.println("pathVelo deccel velocityXValue: " + Math.abs(velocityXValue + velocityYValue));
 
             }else {
 
@@ -172,7 +172,7 @@ public class pathBuilder {
 
                 pathingVelocity.add(pathVelo);
 
-                System.out.println("pathVelo velocityXValue: " + velocityXValue);
+                System.out.println("pathVelo velocityXValue: " + Math.abs(velocityXValue + velocityYValue));
 
             }
 

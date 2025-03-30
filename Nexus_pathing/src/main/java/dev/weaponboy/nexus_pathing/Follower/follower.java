@@ -389,4 +389,8 @@ public class follower {
         return correctivePower;
     }
 
+    public double getPathLength(){
+        return pathoperator.pathLength();
+    }
+
 }
