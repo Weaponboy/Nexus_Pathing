@@ -13,11 +13,11 @@ import java.util.Properties;
 
 public class RobotConfig {
 
-    double X_P_END_COR = 0.025;
-    double X_D_END_COR = 0.005;
+    double X_P_END_COR = 0.022;
+    double X_D_END_COR = 0.006;
 
-    double Y_P_END_COR = 0.032;
-    double Y_D_END_COR = 0.0065;
+    double Y_P_END_COR = 0.028;
+    double Y_D_END_COR = 0.007;
 
     double X_P_PATH_COR = 0.075;
     double X_D_PATH_COR = 0.005;
