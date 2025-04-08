@@ -73,12 +73,36 @@ public class pathsManager {
         }
     }
 
+    public void buildPath(sectionBuilder[] pathSections, String pathName, double newAccelMax){
+        for (String s : paths) {
+            if (s.equals(pathName)) {
+                currentPath = pathName;
+                System.out.println("");
+                System.out.println("trying: " + currentPath);
+                Objects.requireNonNull(objectMap.get(currentPath)).buildPath(pathSections, newAccelMax);
+                System.out.println("built: " + currentPath);
+                break;
+            }
+        }
+    }
+
     public void buildPath(sectionBuilder[] pathSections){
 
         if (!(currentPath == "null")) {
             System.out.println("");
             System.out.println("trying: " + currentPath);
             Objects.requireNonNull(objectMap.get(currentPath)).buildPath(pathSections);
+            System.out.println("built: " + currentPath);
+        }
+
+    }
+
+    public void buildPath(sectionBuilder[] pathSections, double newAccelMax){
+
+        if (!(currentPath == "null")) {
+            System.out.println("");
+            System.out.println("trying: " + currentPath);
+            Objects.requireNonNull(objectMap.get(currentPath)).buildPath(pathSections, newAccelMax);
             System.out.println("built: " + currentPath);
         }
 

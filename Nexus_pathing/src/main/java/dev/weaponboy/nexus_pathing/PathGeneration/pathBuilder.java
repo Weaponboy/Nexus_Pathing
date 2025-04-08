@@ -38,6 +38,20 @@ public class pathBuilder {
 
     }
 
+    public void buildPath(sectionBuilder[] commands, double newAccelMax){
+
+        for (int i = 0; i < commands.length; i++){
+            commands[i].buildSection();
+        }
+
+        smoothPath(bezierPoints);
+
+        motionProfile(newAccelMax);
+
+        calculateHeadings();
+
+    }
+
     private void smoothPath(ArrayList<Vector2D> originalPath){
 
         Vector2D onTheCurve = new Vector2D();
@@ -109,6 +123,97 @@ public class pathBuilder {
         }
 
         double max_velocity = Math.sqrt(2 * robotConfig.MAX_X_ACCELERATION() * accelDistance);
+
+        double deceleration_dt = accelDistance;
+
+        int decIndex = (int) (deceleration_dt/0.25);
+
+        System.out.println("accelDistance: " + accelDistance);
+        System.out.println("max_velocity: " + max_velocity);
+        System.out.println("decIndex: " + decIndex);
+
+        int range;
+
+        for (int i = 0; i < followablePath.size() - 1; i++) {
+
+            if (i + decIndex >= followablePath.size()){
+
+                decelerationNumber += 1;
+
+                range = Math.abs(decIndex - decelerationNumber);
+
+                double DecSlope = (double) range / (double) Math.abs(decIndex) * 100;
+
+                DecSlope = DecSlope*0.01;
+
+                Vector2D currentPoint = followablePath.get(i);
+                Vector2D nextPoint = followablePath.get(i + 1);
+
+                double deltaX = nextPoint.getX() - currentPoint.getX();
+                double deltaY = nextPoint.getY() - currentPoint.getY();
+
+                double percentSum = (Math.abs(deltaX)/0.25)+(Math.abs(deltaY)/0.25);
+
+                double Xfactor = (deltaX/0.25) * (1/percentSum);
+                double Yfactor = (deltaY/0.25) * (1/percentSum);
+
+                double velocityXValue = (Xfactor * max_velocity) * DecSlope;
+                double velocityYValue = (Yfactor * max_velocity) * DecSlope;
+
+                pathVelo = new PathingVelocity(velocityXValue,velocityYValue);
+
+                pathingVelocity.add(pathVelo);
+
+                System.out.println("pathVelo deccel velocityXValue: " + Math.abs(velocityXValue + velocityYValue));
+
+            }else {
+
+                Vector2D currentPoint = followablePath.get(i);
+                Vector2D nextPoint = followablePath.get(i + 1);
+
+                double deltaX = nextPoint.getX() - currentPoint.getX();
+                double deltaY = nextPoint.getY() - currentPoint.getY();
+
+                double percentSum = (Math.abs(deltaX)/0.25)+(Math.abs(deltaY)/0.25);
+
+                double Xfactor = (deltaX/0.25) * (1/percentSum);
+                double Yfactor = (deltaY/0.25) * (1/percentSum);
+
+                double velocityXValue = (Xfactor) * max_velocity;
+                double velocityYValue = (Yfactor) * max_velocity;
+
+                pathVelo = new PathingVelocity(velocityXValue, velocityYValue);
+
+                pathingVelocity.add(pathVelo);
+
+                System.out.println("pathVelo velocityXValue: " + Math.abs(velocityXValue + velocityYValue));
+
+            }
+
+        }
+
+        System.out.println("generated motion profile");
+
+    }
+
+    private void motionProfile(double newAccelMax){
+
+        PathingVelocity pathVelo;
+
+        int decelerationNumber = 0;
+
+        double pathLength = calculateTotalDistance(followablePath);
+
+        double accelDistance = (robotConfig.MAX_X_VELOCITY() * robotConfig.MAX_X_VELOCITY()) / (newAccelMax*2);
+
+        // If we can't accelerate to max velocity in the given distance, we'll accelerate as much as possible
+        double halfway_distance = pathLength/2;
+
+        if (accelDistance > halfway_distance){
+            accelDistance = (halfway_distance);
+        }
+
+        double max_velocity = Math.sqrt(2 * newAccelMax * accelDistance);
 
         double deceleration_dt = accelDistance;
 
