@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1113699c-ae65-4143-8515-455206253754" name="Changes" comment="New max velo">
+    <list default="true" id="1113699c-ae65-4143-8515-455206253754" name="Changes" comment="Tuned PID controllers for PID to point">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -171,46 +171,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1719423865938</updated>
-    </task>
-    <task id="LOCAL-00055" summary="v3.1.5: tuning end corrective PIDs">
-      <option name="closed" value="true" />
-      <created>1732728464024</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1732728464024</updated>
-    </task>
-    <task id="LOCAL-00056" summary="v3.1.5: tuning end corrective PIDs">
-      <option name="closed" value="true" />
-      <created>1732729143176</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1732729143176</updated>
-    </task>
-    <task id="LOCAL-00057" summary="v3.1.5: tuning end corrective PIDs">
-      <option name="closed" value="true" />
-      <created>1732729733982</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1732729733982</updated>
-    </task>
-    <task id="LOCAL-00058" summary="v3.1.5: tuning end corrective PIDs">
-      <option name="closed" value="true" />
-      <created>1732730433223</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1732730433223</updated>
-    </task>
-    <task id="LOCAL-00059" summary="v3.1.5: tuning end corrective PIDs">
-      <option name="closed" value="true" />
-      <created>1732731053623</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1732731053623</updated>
     </task>
     <task id="LOCAL-00060" summary="v3.1.5: heading method public">
       <option name="closed" value="true" />
@@ -564,7 +524,47 @@
       <option name="project" value="LOCAL" />
       <updated>1743348092323</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="Tuned PID controllers for PID to point">
+      <option name="closed" value="true" />
+      <created>1744015699742</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1744015699744</updated>
+    </task>
+    <task id="LOCAL-00105" summary="Tuned PID controllers for PID to point">
+      <option name="closed" value="true" />
+      <created>1744016982042</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1744016982042</updated>
+    </task>
+    <task id="LOCAL-00106" summary="Tuned PID controllers for PID to point">
+      <option name="closed" value="true" />
+      <created>1744018494193</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1744018494193</updated>
+    </task>
+    <task id="LOCAL-00107" summary="Tuned PID controllers for PID to point">
+      <option name="closed" value="true" />
+      <created>1744019158973</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1744019158974</updated>
+    </task>
+    <task id="LOCAL-00108" summary="Tuned PID controllers for PID to point">
+      <option name="closed" value="true" />
+      <created>1744021591361</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1744021591361</updated>
+    </task>
+    <option name="localTasksCounter" value="109" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -590,7 +590,8 @@
     <MESSAGE value="Added PID to point method for yellow spike marks" />
     <MESSAGE value="Custom heading look ahead distance added" />
     <MESSAGE value="New max velo" />
-    <option name="LAST_COMMIT_MESSAGE" value="New max velo" />
+    <MESSAGE value="Tuned PID controllers for PID to point" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tuned PID controllers for PID to point" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Nexus$TestingManager.ic" NAME="TestingManager Coverage Results" MODIFIED="1720002880041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

@@ -19,10 +19,10 @@ public class RobotConfig {
     double Y_P_END_COR = 0.028;
     double Y_D_END_COR = 0.007;
 
-    double X_P_PATH_COR = 0.075;
-    double X_D_PATH_COR = 0.005;
+    double X_P_PATH_COR = 0.025;
+    double X_D_PATH_COR = 0.004;
 
-    double Y_P_PATH_COR = 0.11;
+    double Y_P_PATH_COR = 0.03;
     double Y_D_PATH_COR = 0.005;
 
     double HEADING_P_LARGE = 0.022;
