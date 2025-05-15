@@ -1,7 +1,5 @@
 package dev.weaponboy.nexus_pathing.Follower;
 
-import com.qualcomm.robotcore.util.ElapsedTime;
-
 import dev.weaponboy.nexus_pathing.PathGeneration.pathBuilder;
 import dev.weaponboy.nexus_pathing.PathingUtility.PathingPower;
 import dev.weaponboy.nexus_pathing.PathingUtility.PathingVelocity;
@@ -36,8 +34,6 @@ public class follower {
     }
 
     int headingLookAheadDistance = 20;
-
-    ElapsedTime forceStopTimer = new ElapsedTime();
 
     public void setExtendoHeading(boolean extendoHeading) {
         this.extendoHeading = extendoHeading;
@@ -179,7 +175,6 @@ public class follower {
         forceStopPoint = robotPositionVector;
         velocityAtStopX = velocityX;
         velocityAtStopY = velocityY;
-        forceStopTimer.reset();
     }
 
     public boolean isFinished(){
