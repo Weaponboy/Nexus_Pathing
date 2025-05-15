@@ -197,7 +197,12 @@ public class follower {
         }
 
         if (usePathHeadings){
-            return new RobotPower(Xpower, Ypower, getTurnPower((pathoperator.targetHeadings.get(lookAheadIndex) + headingOffset) + offset, H, XV, YV));
+            double targetHeadingCalc = (pathoperator.targetHeadings.get(lookAheadIndex) + headingOffset) + offset;
+            if (targetHeadingCalc > 360){
+                targetHeadingCalc = targetHeadingCalc - 360;
+            }
+
+            return new RobotPower(Xpower, Ypower, getTurnPower(targetHeadingCalc, H, XV, YV));
         }else {
             return new RobotPower(Xpower, Ypower, getTurnPower(targetHeading, H, XV, YV));
         }
