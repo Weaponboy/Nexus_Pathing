@@ -23,6 +23,18 @@ public class follower {
 
     boolean holdPosition = false;
 
+    public void set180Front(boolean front180) {
+        this.front180 = front180;
+        if (front180){
+            offset = 180;
+        }else {
+            offset = 0;
+        }
+    }
+
+    boolean front180 = false;
+    double offset = 0;
+
     double headingOffset = 0;
 
     public void disableGlobalFollowing(boolean disableGlobalFollowing) {
@@ -185,7 +197,7 @@ public class follower {
         }
 
         if (usePathHeadings){
-            return new RobotPower(Xpower, Ypower, getTurnPower(pathoperator.targetHeadings.get(lookAheadIndex) + headingOffset, H, XV, YV));
+            return new RobotPower(Xpower, Ypower, getTurnPower((pathoperator.targetHeadings.get(lookAheadIndex) + headingOffset) + offset, H, XV, YV));
         }else {
             return new RobotPower(Xpower, Ypower, getTurnPower(targetHeading, H, XV, YV));
         }

@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1113699c-ae65-4143-8515-455206253754" name="Changes" comment="Removed elapsed time timer for force stop">
+    <list default="true" id="1113699c-ae65-4143-8515-455206253754" name="Changes" comment="Added a disable for the global following for simulations">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -171,14 +171,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1719423865938</updated>
-    </task>
-    <task id="LOCAL-00066" summary="v3.3.5 Added using paths target headings">
-      <option name="closed" value="true" />
-      <created>1734360101507</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1734360101507</updated>
     </task>
     <task id="LOCAL-00067" summary="v3.3.5 Speed up the pathing a bit as a test">
       <option name="closed" value="true" />
@@ -564,11 +556,18 @@
       <option name="project" value="LOCAL" />
       <updated>1747334597443</updated>
     </task>
-    <option name="localTasksCounter" value="115" />
+    <task id="LOCAL-00115" summary="Added a disable for the global following for simulations">
+      <option name="closed" value="true" />
+      <created>1747338456436</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1747338456437</updated>
+    </task>
+    <option name="localTasksCounter" value="116" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="v0.0.2 : added isFinished method, fixed issues with the velocity control" />
     <MESSAGE value="v1:test : testing file reading" />
     <MESSAGE value="v1.0.0: Full release ready for testing and first scrim auto paths" />
     <MESSAGE value="v1.0.6: Updating I end targeting, removed curvature" />
@@ -593,7 +592,8 @@
     <MESSAGE value="Added customization to the max accel for path building" />
     <MESSAGE value="Cleaned up a bit, creating a latest release to allow using with the sim" />
     <MESSAGE value="Removed elapsed time timer for force stop" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed elapsed time timer for force stop" />
+    <MESSAGE value="Added a disable for the global following for simulations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a disable for the global following for simulations" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Nexus$TestingManager.ic" NAME="TestingManager Coverage Results" MODIFIED="1720002880041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
