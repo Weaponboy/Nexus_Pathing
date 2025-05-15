@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1113699c-ae65-4143-8515-455206253754" name="Changes" comment="Added customization to the max accel for path building">
+    <list default="true" id="1113699c-ae65-4143-8515-455206253754" name="Changes" comment="Cleaned up a bit, creating a latest release to allow using with the sim">
       <change beforePath="$PROJECT_DIR$/.gradle/8.0/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.0/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.lock" afterDir="false" />
@@ -12,13 +12,8 @@
       <change beforePath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/other.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/Follower/follower.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/Follower/follower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/Follower/pathOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/Follower/pathOperator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/PathGeneration/pathBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/PathGeneration/pathBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/PathGeneration/pathsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/PathGeneration/pathsManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/RobotUtilities/RobotConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/RobotUtilities/RobotConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nexus_pathing/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus_pathing/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,14 +179,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1719423865938</updated>
-    </task>
-    <task id="LOCAL-00063" summary="v3.1.5: adding force stop method, added slower heading control when extendo is out">
-      <option name="closed" value="true" />
-      <created>1733944568449</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1733944568449</updated>
     </task>
     <task id="LOCAL-00064" summary="v3.3.5 Added using paths target headings">
       <option name="closed" value="true" />
@@ -577,7 +564,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744140859395</updated>
     </task>
-    <option name="localTasksCounter" value="112" />
+    <task id="LOCAL-00112" summary="Cleaned up a bit, creating a latest release to allow using with the sim">
+      <option name="closed" value="true" />
+      <created>1747327233326</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1747327233326</updated>
+    </task>
+    <option name="localTasksCounter" value="113" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -605,7 +600,8 @@
     <MESSAGE value="New max velo" />
     <MESSAGE value="Tuned PID controllers for PID to point" />
     <MESSAGE value="Added customization to the max accel for path building" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added customization to the max accel for path building" />
+    <MESSAGE value="Cleaned up a bit, creating a latest release to allow using with the sim" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up a bit, creating a latest release to allow using with the sim" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Nexus$TestingManager.ic" NAME="TestingManager Coverage Results" MODIFIED="1720002880041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

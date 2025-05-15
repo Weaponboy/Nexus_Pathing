@@ -20,7 +20,7 @@ version = 'v0.0.0'
 android {
     namespace 'dev.weaponboy.nexus_pathing'
 
-    compileSdkVersion 33
+    compileSdkVersion 34
 
     lintOptions {
         disable 'ExpiredTargetSdkVersion'
