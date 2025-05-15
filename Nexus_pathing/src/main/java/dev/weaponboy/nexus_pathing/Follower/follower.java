@@ -25,6 +25,12 @@ public class follower {
 
     double headingOffset = 0;
 
+    public void disableGlobalFollowing(boolean disableGlobalFollowing) {
+        this.disableGlobalFollowing = disableGlobalFollowing;
+    }
+
+    boolean disableGlobalFollowing = false;
+
     public void setHeadingOffset(double headingOffset) {
         this.headingOffset = headingOffset;
     }
@@ -106,8 +112,16 @@ public class follower {
                     correctiveXFinalAdjustment.setI(xI);
                     correctiveYFinalAdjustment.setI(yI);
 
-                    double XErrorGlobal = (YError) * Math.sin(Math.toRadians(H)) + (XError) * Math.cos(Math.toRadians(H));
-                    double YErrorGlobal = (YError) * Math.cos(Math.toRadians(H)) - (XError) * Math.sin(Math.toRadians(H));
+                    double XErrorGlobal;
+                    double YErrorGlobal;
+
+                    if (disableGlobalFollowing){
+                        XErrorGlobal = XError;
+                        YErrorGlobal = YError;
+                    }else {
+                        XErrorGlobal = (YError) * Math.sin(Math.toRadians(H)) + (XError) * Math.cos(Math.toRadians(H));
+                        YErrorGlobal = (YError) * Math.cos(Math.toRadians(H)) - (XError) * Math.sin(Math.toRadians(H));
+                    }
 
                     Xpower = correctiveXFinalAdjustment.calculate(XErrorGlobal);
                     Ypower = correctiveYFinalAdjustment.calculate(YErrorGlobal);
@@ -144,8 +158,16 @@ public class follower {
                 correctiveXFinalAdjustment.setI(xI);
                 correctiveYFinalAdjustment.setI(yI);
 
-                double XErrorGlobal = (YError) * Math.sin(Math.toRadians(H)) + (XError) * Math.cos(Math.toRadians(H));
-                double YErrorGlobal = (YError) * Math.cos(Math.toRadians(H)) - (XError) * Math.sin(Math.toRadians(H));
+                double XErrorGlobal;
+                double YErrorGlobal;
+
+                if (disableGlobalFollowing){
+                    XErrorGlobal = XError;
+                    YErrorGlobal = YError;
+                }else {
+                    XErrorGlobal = (YError) * Math.sin(Math.toRadians(H)) + (XError) * Math.cos(Math.toRadians(H));
+                    YErrorGlobal = (YError) * Math.cos(Math.toRadians(H)) - (XError) * Math.sin(Math.toRadians(H));
+                }
 
                 pathingPower = new PathingPower(correctiveXFinalAdjustment.calculate(XErrorGlobal), correctiveYFinalAdjustment.calculate(YErrorGlobal));
             } else {
@@ -303,8 +325,16 @@ public class follower {
         double xPowerC = xerror.calculate(xDist);
         double yPowerC = yerror.calculate(yDist);
 
-        double relativeXCorrective = (yPowerC) * Math.sin(Math.toRadians(heading)) + (xPowerC) * Math.cos(Math.toRadians(heading));
-        double relativeYCorrective = (yPowerC) * Math.cos(Math.toRadians(heading)) - (xPowerC) * Math.sin(Math.toRadians(heading));
+        double relativeXCorrective;
+        double relativeYCorrective;
+
+        if (disableGlobalFollowing){
+            relativeXCorrective = xPowerC;
+            relativeYCorrective = yPowerC;
+        }else {
+            relativeXCorrective = (yPowerC) * Math.sin(Math.toRadians(heading)) + (xPowerC) * Math.cos(Math.toRadians(heading));
+            relativeYCorrective = (yPowerC) * Math.cos(Math.toRadians(heading)) - (xPowerC) * Math.sin(Math.toRadians(heading));
+        }
 
         double veloXDef = targetVelocity.getXVelocity() - XVelo;
         double veloYDef = targetVelocity.getYVelocity() - YVelo;
@@ -312,8 +342,16 @@ public class follower {
 //        double veloXDef = 0;
 //        double veloYDef = 0;
 
-        double relativeXVelo = (targetVelocity.getYVelocity()+veloYDef) * Math.sin(Math.toRadians(heading)) + (targetVelocity.getXVelocity()+veloXDef) * Math.cos(Math.toRadians(heading));
-        double relativeYVelo = (targetVelocity.getYVelocity()+veloYDef) * Math.cos(Math.toRadians(heading)) - (targetVelocity.getXVelocity()+veloXDef) * Math.sin(Math.toRadians(heading));
+        double relativeXVelo;
+        double relativeYVelo;
+
+        if (disableGlobalFollowing){
+            relativeXVelo = (targetVelocity.getXVelocity()+veloXDef);
+            relativeYVelo = (targetVelocity.getYVelocity()+veloYDef);
+        }else {
+            relativeXVelo = (targetVelocity.getYVelocity()+veloYDef) * Math.sin(Math.toRadians(heading)) + (targetVelocity.getXVelocity()+veloXDef) * Math.cos(Math.toRadians(heading));
+            relativeYVelo = (targetVelocity.getYVelocity()+veloYDef) * Math.cos(Math.toRadians(heading)) - (targetVelocity.getXVelocity()+veloXDef) * Math.sin(Math.toRadians(heading));
+        }
 
         double vertical = kxfull * relativeXVelo;
         double horizontal = kyfull * relativeYVelo;
