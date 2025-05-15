@@ -23,6 +23,8 @@ public class follower {
     double velocityX = 0;
     double velocityY = 0;
 
+    boolean holdPosition = false;
+
     double headingOffset = 0;
 
     public void setHeadingOffset(double headingOffset) {
@@ -50,7 +52,9 @@ public class follower {
     double yI = 0;
     double xI = 0;
 
-    double headingI = 0;
+    double headingAddedIError = 0;
+
+    boolean useHeadingI = false;
 
     boolean gotToEnd = false;
 
@@ -101,25 +105,25 @@ public class follower {
 
         if (pathFinished){
 
-            if (forceStopTimer.milliseconds() > 600){
+            if (holdPosition){
+                if (Math.hypot(XError, YError) < 3) {
+                    correctiveXFinalAdjustment.setI(xI);
+                    correctiveYFinalAdjustment.setI(yI);
 
-                XError = forceStopPoint.getX() - X;
-                YError = forceStopPoint.getY() - Y;
+                    double XErrorGlobal = (YError) * Math.sin(Math.toRadians(H)) + (XError) * Math.cos(Math.toRadians(H));
+                    double YErrorGlobal = (YError) * Math.cos(Math.toRadians(H)) - (XError) * Math.sin(Math.toRadians(H));
 
-                double XErrorGlobal = (YError) * Math.sin(Math.toRadians(H)) + (XError) * Math.cos(Math.toRadians(H));
-                double YErrorGlobal = (YError) * Math.cos(Math.toRadians(H)) - (XError) * Math.sin(Math.toRadians(H));
+                    Xpower = correctiveXFinalAdjustment.calculate(XErrorGlobal);
+                    Ypower = correctiveYFinalAdjustment.calculate(YErrorGlobal);
 
-                Xpower = correctiveXFinalAdjustment.calculate(XErrorGlobal);
-                Ypower = correctiveYFinalAdjustment.calculate(YErrorGlobal);
-
+                } else {
+                    Xpower = 0;
+                    Ypower = 0;
+                }
             }else {
-                double kyfull = 1/config.MAX_Y_VELOCITY();
-                double kxfull = 1/config.MAX_X_VELOCITY();
-
-                Xpower = -(velocityAtStopX * kxfull);
-                Ypower = -(velocityAtStopY * kyfull);
+                Xpower = 0;
+                Ypower = 0;
             }
-
 
         }else {
 
@@ -163,9 +167,9 @@ public class follower {
         }
 
         if (usePathHeadings){
-            return new RobotPower(Xpower, Ypower, getTurnPower(pathoperator.targetHeadings.get(lookAheadIndex) + headingOffset, H));
+            return new RobotPower(Xpower, Ypower, getTurnPower(pathoperator.targetHeadings.get(lookAheadIndex) + headingOffset, H, XV, YV));
         }else {
-            return new RobotPower(Xpower, Ypower, getTurnPower(targetHeading, H));
+            return new RobotPower(Xpower, Ypower, getTurnPower(targetHeading, H, XV, YV));
         }
 
     }
@@ -224,42 +228,23 @@ public class follower {
         return Math.abs(endPoint.getY() - robotPositionVector.getY());
     }
 
-    public double getTurnPower(double targetHeading, double currentHeading){
-
-        double turnPower;
-
-        double rotdist = (targetHeading - currentHeading);
-
-        if (rotdist < -180) {
-            rotdist = (360 + rotdist);
-        } else if (rotdist > 180) {
-            rotdist = (rotdist - 360);
-        }
-
-        if (extendoHeading){
-            turnPower = largeHeadingPID.calculate(-rotdist);
-        }else {
-            turnPower = smallHeadingPID.calculate(-rotdist);
-        }
-
-        return turnPower;
-    }
-
     public double getTurnPower(double targetHeading, double currentHeading, double Xvelo, double Yvelo){
 
         double turnPower;
 
         double rotdist = (targetHeading - currentHeading);
 
-//        if (Math.abs(rotdist) > 5 && Math.abs(Xvelo) < 3 && Math.abs(Yvelo) < 3){
-//            headingI -= 0.0005;
-//
-////            if (headingI > 5){
-////                headingI = 5;
-////            }
-//        }else {
-//            headingI = 0;
-//        }
+        if (useHeadingI){
+            if (rotdist > 0 && Math.abs(Xvelo) < 3 && Math.abs(Yvelo) < 3){
+                headingAddedIError += 0.4;
+            }else if (rotdist < 0 && Math.abs(Xvelo) < 3 && Math.abs(Yvelo) < 3){
+                headingAddedIError -= 0.4;
+            }else {
+                headingAddedIError = 0;
+            }
+        }else{
+            headingAddedIError = 0;
+        }
 
 //        smallHeadingPID.setI(headingI);
 //        largeHeadingPID.setI(headingI);
@@ -270,17 +255,13 @@ public class follower {
             rotdist = (rotdist - 360);
         }
 
-        if (extendoHeading){
-            turnPower = largeHeadingPID.calculate(-rotdist);
-        }else {
-            turnPower = smallHeadingPID.calculate(-rotdist);
-        }
+        rotdist += headingAddedIError;
 
-//        if (Math.abs(rotdist) > 20){
-//            c
-//        }else {
-//            turnPower = smallHeadingPID.calculate(-rotdist);
-//        }
+        if (extendoHeading){
+            turnPower = smallHeadingPID.calculate(-rotdist);
+        }else {
+            turnPower = largeHeadingPID.calculate(-rotdist);
+        }
 
         return turnPower;
     }
@@ -301,20 +282,20 @@ public class follower {
 
         currentIndex = closestPos;
 
-        double curveY = Math.abs(YVelo*1.2)/2;
-        double curveX = Math.abs(XVelo*1.2)/2;
-
-        int index = closestPos + 40;
-
-        if (index > pathoperator.pathCurve.size()-1){
-            index = pathoperator.pathCurve.size()-1;
-        }
-
-        double XpowerCurve = pathoperator.pathCurve.get(index).getX()*curveX;
-        double YpowerCurve = pathoperator.pathCurve.get(index).getY()*curveY;
-
-        double relativeXCurve = (YpowerCurve) * Math.sin(Math.toRadians(heading)) + (XpowerCurve) * Math.cos(Math.toRadians(heading));
-        double relativeYCurve = (YpowerCurve) * Math.cos(Math.toRadians(heading)) - (XpowerCurve) * Math.sin(Math.toRadians(heading));
+//        double curveY = Math.abs(YVelo*1.2)/2;
+//        double curveX = Math.abs(XVelo*1.2)/2;
+//
+//        int index = closestPos + 40;
+//
+//        if (index > pathoperator.pathCurve.size()-1){
+//            index = pathoperator.pathCurve.size()-1;
+//        }
+//
+//        double XpowerCurve = pathoperator.pathCurve.get(index).getX()*curveX;
+//        double YpowerCurve = pathoperator.pathCurve.get(index).getY()*curveY;
+//
+//        double relativeXCurve = (YpowerCurve) * Math.sin(Math.toRadians(heading)) + (XpowerCurve) * Math.cos(Math.toRadians(heading));
+//        double relativeYCurve = (YpowerCurve) * Math.cos(Math.toRadians(heading)) - (XpowerCurve) * Math.sin(Math.toRadians(heading));
 
         error = pathoperator.getErrorToPath(robotPos, closestPos);
 
@@ -393,4 +374,19 @@ public class follower {
         return pathoperator.pathLength();
     }
 
+    public boolean isHoldPosition() {
+        return holdPosition;
+    }
+
+    public void setHoldPosition(boolean holdPosition) {
+        this.holdPosition = holdPosition;
+    }
+
+    public boolean isUseHeadingI() {
+        return useHeadingI;
+    }
+
+    public void setUseHeadingI(boolean useHeadingI) {
+        this.useHeadingI = useHeadingI;
+    }
 }

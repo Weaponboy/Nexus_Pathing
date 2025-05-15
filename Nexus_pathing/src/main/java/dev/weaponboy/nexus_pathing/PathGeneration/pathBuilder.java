@@ -20,9 +20,13 @@ public class pathBuilder {
 
     public ArrayList<PathingVelocity> pathingVelocity = new ArrayList<>();
 
-    RobotConfig robotConfig = new RobotConfig();
+    RobotConfig robotConfig;
 
     Vector2D secondPoint = new Vector2D();
+
+    public pathBuilder(RobotConfig robotConfig){
+        this.robotConfig = robotConfig;
+    }
 
     public void buildPath(sectionBuilder[] commands){
 
@@ -38,7 +42,7 @@ public class pathBuilder {
 
     }
 
-    public void buildPath(sectionBuilder[] commands, double newAccelMax){
+    public void buildPath(sectionBuilder[] commands, double customMaxAccel){
 
         for (int i = 0; i < commands.length; i++){
             commands[i].buildSection();
@@ -46,7 +50,7 @@ public class pathBuilder {
 
         smoothPath(bezierPoints);
 
-        motionProfile(newAccelMax);
+        motionProfile(customMaxAccel);
 
         calculateHeadings();
 
@@ -101,7 +105,9 @@ public class pathBuilder {
             }
         }
 
-        System.out.println("processed and smoothed path");
+        if (robotConfig.logDebugging()){
+            System.out.println("processed and smoothed path");
+        }
 
     }
 
@@ -128,9 +134,11 @@ public class pathBuilder {
 
         int decIndex = (int) (deceleration_dt/0.25);
 
-        System.out.println("accelDistance: " + accelDistance);
-        System.out.println("max_velocity: " + max_velocity);
-        System.out.println("decIndex: " + decIndex);
+        if (robotConfig.logDebugging()) {
+            System.out.println("accelDistance: " + accelDistance);
+            System.out.println("max_velocity: " + max_velocity);
+            System.out.println("decIndex: " + decIndex);
+        }
 
         int range;
 
@@ -164,7 +172,10 @@ public class pathBuilder {
 
                 pathingVelocity.add(pathVelo);
 
-                System.out.println("pathVelo deccel velocityXValue: " + Math.abs(velocityXValue + velocityYValue));
+                if (robotConfig.logDebugging()) {
+                    System.out.println("pathVelo deccel velocityXValue: " + Math.abs(velocityXValue + velocityYValue));
+                }
+
 
             }else {
 
@@ -186,17 +197,21 @@ public class pathBuilder {
 
                 pathingVelocity.add(pathVelo);
 
-                System.out.println("pathVelo velocityXValue: " + Math.abs(velocityXValue + velocityYValue));
+                if (robotConfig.logDebugging()){
+                    System.out.println("pathVelo velocityXValue: " + Math.abs(velocityXValue + velocityYValue));
+                }
 
             }
 
         }
 
-        System.out.println("generated motion profile");
+        if (robotConfig.logDebugging()){
+            System.out.println("generated motion profile");
+        }
 
     }
 
-    private void motionProfile(double newAccelMax){
+    private void motionProfile(double customMaxAccel){
 
         PathingVelocity pathVelo;
 
@@ -204,7 +219,7 @@ public class pathBuilder {
 
         double pathLength = calculateTotalDistance(followablePath);
 
-        double accelDistance = (robotConfig.MAX_X_VELOCITY() * robotConfig.MAX_X_VELOCITY()) / (newAccelMax*2);
+        double accelDistance = (robotConfig.MAX_X_VELOCITY() * robotConfig.MAX_X_VELOCITY()) / (customMaxAccel*2);
 
         // If we can't accelerate to max velocity in the given distance, we'll accelerate as much as possible
         double halfway_distance = pathLength/2;
@@ -213,15 +228,17 @@ public class pathBuilder {
             accelDistance = (halfway_distance);
         }
 
-        double max_velocity = Math.sqrt(2 * newAccelMax * accelDistance);
+        double max_velocity = Math.sqrt(2 * customMaxAccel * accelDistance);
 
         double deceleration_dt = accelDistance;
 
         int decIndex = (int) (deceleration_dt/0.25);
 
-        System.out.println("accelDistance: " + accelDistance);
-        System.out.println("max_velocity: " + max_velocity);
-        System.out.println("decIndex: " + decIndex);
+        if (robotConfig.logDebugging()){
+            System.out.println("accelDistance: " + accelDistance);
+            System.out.println("max_velocity: " + max_velocity);
+            System.out.println("decIndex: " + decIndex);
+        }
 
         int range;
 
@@ -255,7 +272,9 @@ public class pathBuilder {
 
                 pathingVelocity.add(pathVelo);
 
-                System.out.println("pathVelo deccel velocityXValue: " + Math.abs(velocityXValue + velocityYValue));
+                if (robotConfig.logDebugging()){
+                    System.out.println("pathVelo deccel velocityXValue: " + Math.abs(velocityXValue + velocityYValue));
+                }
 
             }else {
 
@@ -277,13 +296,17 @@ public class pathBuilder {
 
                 pathingVelocity.add(pathVelo);
 
-                System.out.println("pathVelo velocityXValue: " + Math.abs(velocityXValue + velocityYValue));
+                if (robotConfig.logDebugging()){
+                    System.out.println("pathVelo velocityXValue: " + Math.abs(velocityXValue + velocityYValue));
+                }
 
             }
 
         }
 
-        System.out.println("generated motion profile");
+        if (robotConfig.logDebugging()){
+            System.out.println("generated motion profile");
+        }
 
     }
 
@@ -321,19 +344,25 @@ public class pathBuilder {
     public void buildPathSegment(Vector2D start, Vector2D end){
         segmentGenerator.buildPath(start, end);
         bezierPoints.addAll(segmentGenerator.copyPath());
-        System.out.println("Built two point line");
+        if (robotConfig.logDebugging()){
+            System.out.println("Built two point line");
+        }
     }
 
     public void buildPathSegment(Vector2D start, Vector2D control, Vector2D end){
         segmentGenerator.buildPath(start, control, end);
         bezierPoints.addAll(segmentGenerator.copyPath());
-        System.out.println("Built three point curve");
+        if (robotConfig.logDebugging()){
+            System.out.println("Built three point curve");
+        }
     }
 
     public void buildPathSegment(Vector2D start, Vector2D control1, Vector2D control2, Vector2D end){
         segmentGenerator.buildPath(start, control1, control2, end);
         bezierPoints.addAll(segmentGenerator.copyPath());
-        System.out.println("Built four point curve");
+        if (robotConfig.logDebugging()){
+            System.out.println("Built four point curve");
+        }
     }
 
     public void clearAll(){

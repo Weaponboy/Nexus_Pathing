@@ -37,6 +37,8 @@ public class RobotConfig {
     double MAX_X_ACCELERATION = 280;
     double MAX_Y_ACCELERATION = 90;
 
+    boolean logDebugging = false;
+
     public RobotConfig() {}
 
     public RobotConfig(double X_P_END_COR, double X_D_END_COR, double Y_P_END_COR, double Y_D_END_COR, double X_P_PATH_COR, double X_D_PATH_COR, double Y_P_PATH_COR, double Y_D_PATH_COR, double HEADING_P_LARGE, double HEADING_D_LARGE, double HEADING_P_SMALL, double HEADING_D_SMALL, double MAX_X_VELOCITY, double MAX_Y_VELOCITY, double MAX_X_ACCELERATION, double MAX_Y_ACCELERATION) {
@@ -130,4 +132,13 @@ public class RobotConfig {
     public double MAX_Y_ACCELERATION() {
         return MAX_Y_ACCELERATION;
     }
+
+    public boolean logDebugging() {
+        return logDebugging;
+    }
+
+    public void logDebugging(boolean logDebugging) {
+        this.logDebugging = logDebugging;
+    }
+
 }

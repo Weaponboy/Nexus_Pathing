@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import dev.weaponboy.nexus_pathing.PathGeneration.commands.sectionBuilder;
 import dev.weaponboy.nexus_pathing.PathingUtility.PathingVelocity;
+import dev.weaponboy.nexus_pathing.RobotUtilities.RobotConfig;
 import dev.weaponboy.nexus_pathing.RobotUtilities.Vector2D;
 
 public class pathsManager {
@@ -17,19 +18,17 @@ public class pathsManager {
 
     String currentPath = "null";
 
-    public pathsManager(){
-//        pathBuilder newBuilder = new pathBuilder();
-//
-//        objectMap.put("default", newBuilder);
-//
-//        paths.add("default");
-//
-//        currentPath = "default";
+    RobotConfig robotConfig = new RobotConfig();
+
+    public pathsManager(){}
+
+    public pathsManager(RobotConfig CustomConfig){
+        robotConfig = CustomConfig;
     }
 
     public void addNewPath(String pathName){
 
-        pathBuilder newBuilder = new pathBuilder();
+        pathBuilder newBuilder = new pathBuilder(robotConfig);
 
         objectMap.put(pathName, newBuilder);
 
@@ -40,7 +39,7 @@ public class pathsManager {
 
     public void addNewPath(String pathName, sectionBuilder[] pathSections) {
 
-        pathBuilder newBuilder = new pathBuilder();
+        pathBuilder newBuilder = new pathBuilder(robotConfig);
 
         objectMap.put(pathName, newBuilder);
 
@@ -51,10 +50,18 @@ public class pathsManager {
         for (String s : paths) {
             if (s.equals(pathName)) {
                 currentPath = pathName;
-                System.out.println("");
-                System.out.println("trying: " + currentPath);
+
+                if (robotConfig.logDebugging()){
+                    System.out.println("");
+                    System.out.println("trying: " + currentPath);
+                }
+
                 Objects.requireNonNull(objectMap.get(currentPath)).buildPath(pathSections);
-                System.out.println("built: " + currentPath);
+
+                if (robotConfig.logDebugging()){
+                    System.out.println("built: " + currentPath);
+                }
+
                 break;
             }
         }
@@ -64,10 +71,18 @@ public class pathsManager {
         for (String s : paths) {
             if (s.equals(pathName)) {
                 currentPath = pathName;
-                System.out.println("");
-                System.out.println("trying: " + currentPath);
+
+                if (robotConfig.logDebugging()){
+                    System.out.println("");
+                    System.out.println("trying: " + currentPath);
+                }
+
                 Objects.requireNonNull(objectMap.get(currentPath)).buildPath(pathSections);
-                System.out.println("built: " + currentPath);
+
+                if (robotConfig.logDebugging()){
+                    System.out.println("built: " + currentPath);
+                }
+
                 break;
             }
         }
@@ -77,10 +92,18 @@ public class pathsManager {
         for (String s : paths) {
             if (s.equals(pathName)) {
                 currentPath = pathName;
-                System.out.println("");
-                System.out.println("trying: " + currentPath);
+
+                if (robotConfig.logDebugging()){
+                    System.out.println("");
+                    System.out.println("trying: " + currentPath);
+                }
+
                 Objects.requireNonNull(objectMap.get(currentPath)).buildPath(pathSections, newAccelMax);
-                System.out.println("built: " + currentPath);
+
+                if (robotConfig.logDebugging()){
+                    System.out.println("built: " + currentPath);
+                }
+
                 break;
             }
         }
@@ -89,10 +112,18 @@ public class pathsManager {
     public void buildPath(sectionBuilder[] pathSections){
 
         if (!(currentPath == "null")) {
-            System.out.println("");
-            System.out.println("trying: " + currentPath);
+
+            if (robotConfig.logDebugging()){
+                System.out.println("");
+                System.out.println("trying: " + currentPath);
+            }
+
             Objects.requireNonNull(objectMap.get(currentPath)).buildPath(pathSections);
-            System.out.println("built: " + currentPath);
+
+            if (robotConfig.logDebugging()){
+                System.out.println("built: " + currentPath);
+            }
+
         }
 
     }
@@ -100,10 +131,18 @@ public class pathsManager {
     public void buildPath(sectionBuilder[] pathSections, double newAccelMax){
 
         if (!(currentPath == "null")) {
-            System.out.println("");
-            System.out.println("trying: " + currentPath);
+
+            if (robotConfig.logDebugging()){
+                System.out.println("");
+                System.out.println("trying: " + currentPath);
+            }
+
             Objects.requireNonNull(objectMap.get(currentPath)).buildPath(pathSections, newAccelMax);
-            System.out.println("built: " + currentPath);
+
+            if (robotConfig.logDebugging()){
+                System.out.println("built: " + currentPath);
+            }
+
         }
 
     }

@@ -21,14 +21,14 @@ public class pathOperator {
     public pathOperator(ArrayList<Vector2D> followablePath, ArrayList<PathingVelocity> pathingVelocity){
         this.followablePath = followablePath;
         this.pathingVelocity = pathingVelocity;
-        this.pathCurve = calculateCurvatureVectors(followablePath);
+//        this.pathCurve = calculateCurvatureVectors(followablePath);
     }
 
     public pathOperator(ArrayList<Vector2D> followablePath, ArrayList<PathingVelocity> pathingVelocity, ArrayList<Double> targetHeadings){
         this.followablePath = followablePath;
         this.pathingVelocity = pathingVelocity;
         this.targetHeadings = targetHeadings;
-        this.pathCurve = calculateCurvatureVectors(followablePath);
+//        this.pathCurve = calculateCurvatureVectors(followablePath);
     }
 
 
