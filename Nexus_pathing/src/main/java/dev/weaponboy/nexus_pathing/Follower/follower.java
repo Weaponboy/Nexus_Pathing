@@ -63,6 +63,12 @@ public class follower {
 
     static RobotConfig config = new RobotConfig();
 
+    public follower(){}
+
+    public follower(RobotConfig customConfig){
+        config = customConfig;
+    }
+
     double yI = 0;
     double xI = 0;
 
