@@ -4,34 +4,8 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1113699c-ae65-4143-8515-455206253754" name="Changes" comment="Updated gradle version">
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/checksums/checksums.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/dependencies-accessors/edd3e717e040173a5e43925298e877f9124df4e7/classes/org/gradle/accessors/dm/LibrariesForLibs$AndroidxLibraryAccessors.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/dependencies-accessors/edd3e717e040173a5e43925298e877f9124df4e7/classes/org/gradle/accessors/dm/LibrariesForLibs$AndroidxTestExtLibraryAccessors.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/dependencies-accessors/edd3e717e040173a5e43925298e877f9124df4e7/classes/org/gradle/accessors/dm/LibrariesForLibs$AndroidxTestExtVersionAccessors.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/dependencies-accessors/edd3e717e040173a5e43925298e877f9124df4e7/classes/org/gradle/accessors/dm/LibrariesForLibs$AndroidxTestLibraryAccessors.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/dependencies-accessors/edd3e717e040173a5e43925298e877f9124df4e7/classes/org/gradle/accessors/dm/LibrariesForLibs$AndroidxTestVersionAccessors.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/dependencies-accessors/edd3e717e040173a5e43925298e877f9124df4e7/classes/org/gradle/accessors/dm/LibrariesForLibs$AndroidxVersionAccessors.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/dependencies-accessors/edd3e717e040173a5e43925298e877f9124df4e7/classes/org/gradle/accessors/dm/LibrariesForLibs$BundleAccessors.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/dependencies-accessors/edd3e717e040173a5e43925298e877f9124df4e7/classes/org/gradle/accessors/dm/LibrariesForLibs$EspressoLibraryAccessors.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/dependencies-accessors/edd3e717e040173a5e43925298e877f9124df4e7/classes/org/gradle/accessors/dm/LibrariesForLibs$EspressoVersionAccessors.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/dependencies-accessors/edd3e717e040173a5e43925298e877f9124df4e7/classes/org/gradle/accessors/dm/LibrariesForLibs$PluginAccessors.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/dependencies-accessors/edd3e717e040173a5e43925298e877f9124df4e7/classes/org/gradle/accessors/dm/LibrariesForLibs$VersionAccessors.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/dependencies-accessors/edd3e717e040173a5e43925298e877f9124df4e7/classes/org/gradle/accessors/dm/LibrariesForLibs.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/dependencies-accessors/edd3e717e040173a5e43925298e877f9124df4e7/sources/org/gradle/accessors/dm/LibrariesForLibs.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/dependencies-accessors/gc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/fileChanges/last-build.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/gc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+    <list default="true" id="1113699c-ae65-4143-8515-455206253754" name="Changes" comment="Updated custom config files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nexus_pathing/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus_pathing/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/Follower/follower.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/Follower/follower.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -201,14 +175,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1719423865938</updated>
-    </task>
-    <task id="LOCAL-00070" summary="v3.3.5 Speed up the pathing a bit as a test">
-      <option name="closed" value="true" />
-      <created>1735565693222</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1735565693222</updated>
     </task>
     <task id="LOCAL-00071" summary="v3.3.5 Speed up the pathing a bit as a test">
       <option name="closed" value="true" />
@@ -594,11 +560,18 @@
       <option name="project" value="LOCAL" />
       <updated>1747848806369</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="Updated custom config files">
+      <option name="closed" value="true" />
+      <created>1761161107872</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1761161107874</updated>
+    </task>
+    <option name="localTasksCounter" value="120" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="v1.0.6: Updating I end targeting, removed curvature" />
     <MESSAGE value="v1.0.6: Updating I end targeting, got real robot velocities" />
     <MESSAGE value="v2.0.3: Updating I end targeting, got real robot velocities" />
     <MESSAGE value="v2.0.8: Updating I end targeting, got real robot velocities" />
@@ -623,7 +596,8 @@
     <MESSAGE value="Added a disable for the global following for simulations" />
     <MESSAGE value="Add heading offset for the follow using path heading" />
     <MESSAGE value="Updated gradle version" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated gradle version" />
+    <MESSAGE value="Updated custom config files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated custom config files" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Nexus$TestingManager.ic" NAME="TestingManager Coverage Results" MODIFIED="1720002880041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

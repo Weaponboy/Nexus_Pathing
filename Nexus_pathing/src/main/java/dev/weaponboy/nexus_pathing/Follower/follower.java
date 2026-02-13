@@ -10,6 +10,15 @@ import dev.weaponboy.nexus_pathing.RobotUtilities.Vector2D;
 
 public class follower {
 
+    PIDController xerror;
+    PIDController yerror;
+
+    static PIDController correctiveXFinalAdjustment;
+    static PIDController correctiveYFinalAdjustment;
+
+    PIDController largeHeadingPID;
+    PIDController smallHeadingPID;
+
     boolean pathFinished = false;
 
     boolean forceStop = false;
@@ -61,12 +70,26 @@ public class follower {
 
     pathOperator pathoperator;
 
-    static RobotConfig config = new RobotConfig();
+    static RobotConfig config;
 
-    public follower(){}
+    public follower(){
+        config = new RobotConfig();
+        xerror = new PIDController(config.getX_P_PATH_COR(), 0, config.getX_D_PATH_COR());
+        yerror = new PIDController(config.getY_P_PATH_COR(), 0, config.getY_D_PATH_COR());
+        correctiveXFinalAdjustment = new PIDController(config.getX_P_END_COR(), 0, config.getX_D_END_COR());
+        correctiveYFinalAdjustment = new PIDController(config.getY_P_END_COR(), 0, config.getY_D_END_COR());
+        largeHeadingPID = new PIDController(config.getHEADING_P_LARGE(), 0, config.getHEADING_D_LARGE());
+        smallHeadingPID = new PIDController(config.getHEADING_P_SMALL(), 0, config.getHEADING_D_SMALL());
+    }
 
     public follower(RobotConfig customConfig){
         config = customConfig;
+        xerror = new PIDController(config.getX_P_PATH_COR(), 0, config.getX_D_PATH_COR());
+        yerror = new PIDController(config.getY_P_PATH_COR(), 0, config.getY_D_PATH_COR());
+        correctiveXFinalAdjustment = new PIDController(config.getX_P_END_COR(), 0, config.getX_D_END_COR());
+        correctiveYFinalAdjustment = new PIDController(config.getY_P_END_COR(), 0, config.getY_D_END_COR());
+        largeHeadingPID = new PIDController(config.getHEADING_P_LARGE(), 0, config.getHEADING_D_LARGE());
+        smallHeadingPID = new PIDController(config.getHEADING_P_SMALL(), 0, config.getHEADING_D_SMALL());
     }
 
     double yI = 0;
@@ -77,15 +100,6 @@ public class follower {
     boolean useHeadingI = false;
 
     boolean gotToEnd = false;
-
-    PIDController xerror = new PIDController(config.getX_P_PATH_COR(), 0, config.getX_D_PATH_COR());
-    PIDController yerror = new PIDController(config.getY_P_PATH_COR(), 0, config.getY_D_PATH_COR());
-
-    static PIDController correctiveXFinalAdjustment = new PIDController(config.getX_P_END_COR(), 0, config.getX_D_END_COR());
-    static PIDController correctiveYFinalAdjustment = new PIDController(config.getY_P_END_COR(), 0, config.getY_D_END_COR());
-
-    PIDController largeHeadingPID = new PIDController(config.getHEADING_P_LARGE(), 0, config.getHEADING_D_LARGE());
-    PIDController smallHeadingPID = new PIDController(config.getHEADING_P_SMALL(), 0, config.getHEADING_D_SMALL());
 
     Vector2D robotPositionVector = new Vector2D();
     int currentIndex = 0;
