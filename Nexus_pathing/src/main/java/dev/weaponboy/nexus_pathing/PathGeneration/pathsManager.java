@@ -5,30 +5,30 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import dev.weaponboy.nexus_pathing.PathGeneration.commands.sectionBuilder;
+import dev.weaponboy.nexus_pathing.PathGeneration.commands.SectionBuilder;
 import dev.weaponboy.nexus_pathing.PathingUtility.PathingVelocity;
 import dev.weaponboy.nexus_pathing.RobotUtilities.RobotConfig;
 import dev.weaponboy.nexus_pathing.RobotUtilities.Vector2D;
 
-public class pathsManager {
+public class PathsManager {
 
-    private Map<String, pathBuilder> objectMap = new HashMap<>();
+    private Map<String, PathBuilder> objectMap = new HashMap<>();
 
     public ArrayList<String> paths = new ArrayList<>();
 
-    String currentPath = "null";
+    String currentPath = null;
 
     RobotConfig robotConfig = new RobotConfig();
 
-    public pathsManager(){}
+    public PathsManager(){}
 
-    public pathsManager(RobotConfig CustomConfig){
+    public PathsManager(RobotConfig CustomConfig){
         robotConfig = CustomConfig;
     }
 
     public void addNewPath(String pathName){
 
-        pathBuilder newBuilder = new pathBuilder(robotConfig);
+        PathBuilder newBuilder = new PathBuilder(robotConfig);
 
         objectMap.put(pathName, newBuilder);
 
@@ -37,9 +37,9 @@ public class pathsManager {
         currentPath = pathName;
     }
 
-    public void addNewPath(String pathName, sectionBuilder[] pathSections) {
+    public void addNewPath(String pathName, SectionBuilder[] pathSections) {
 
-        pathBuilder newBuilder = new pathBuilder(robotConfig);
+        PathBuilder newBuilder = new PathBuilder(robotConfig);
 
         objectMap.put(pathName, newBuilder);
 
@@ -67,7 +67,7 @@ public class pathsManager {
         }
     }
 
-    public void buildPath(sectionBuilder[] pathSections, String pathName){
+    public void buildPath(SectionBuilder[] pathSections, String pathName){
         for (String s : paths) {
             if (s.equals(pathName)) {
                 currentPath = pathName;
@@ -88,7 +88,7 @@ public class pathsManager {
         }
     }
 
-    public void buildPath(sectionBuilder[] pathSections, String pathName, double newAccelMax){
+    public void buildPath(SectionBuilder[] pathSections, String pathName, double newAccelMax){
         for (String s : paths) {
             if (s.equals(pathName)) {
                 currentPath = pathName;
@@ -109,9 +109,9 @@ public class pathsManager {
         }
     }
 
-    public void buildPath(sectionBuilder[] pathSections){
+    public void buildPath(SectionBuilder[] pathSections){
 
-        if (!(currentPath == "null")) {
+        if (currentPath != null) {
 
             if (robotConfig.logDebugging()){
                 System.out.println("");
@@ -128,9 +128,9 @@ public class pathsManager {
 
     }
 
-    public void buildPath(sectionBuilder[] pathSections, double newAccelMax){
+    public void buildPath(SectionBuilder[] pathSections, double newAccelMax){
 
-        if (!(currentPath == "null")) {
+        if (currentPath != null) {
 
             if (robotConfig.logDebugging()){
                 System.out.println("");
@@ -190,11 +190,11 @@ public class pathsManager {
         return Objects.requireNonNull(objectMap.get(currentPath)).pathingVelocity;
     }
 
-    public pathBuilder returnPath(String pathName){
+    public PathBuilder returnPath(String pathName){
         return Objects.requireNonNull(objectMap.get(pathName));
     }
 
-    public pathBuilder returnCurrentPath(){
+    public PathBuilder returnCurrentPath(){
         return Objects.requireNonNull(objectMap.get(currentPath));
     }
 

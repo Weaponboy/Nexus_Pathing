@@ -6,7 +6,7 @@ import dev.weaponboy.nexus_pathing.RobotUtilities.Vector2D;
 import java.util.ArrayList;
 import java.util.List;
 
-public class pathOperator {
+public class PathOperator {
 
     ArrayList<Vector2D> followablePath;
 
@@ -18,13 +18,13 @@ public class pathOperator {
 
     int lastPointOnPath;
 
-    public pathOperator(ArrayList<Vector2D> followablePath, ArrayList<PathingVelocity> pathingVelocity){
+    public PathOperator(ArrayList<Vector2D> followablePath, ArrayList<PathingVelocity> pathingVelocity){
         this.followablePath = followablePath;
         this.pathingVelocity = pathingVelocity;
 //        this.pathCurve = calculateCurvatureVectors(followablePath);
     }
 
-    public pathOperator(ArrayList<Vector2D> followablePath, ArrayList<PathingVelocity> pathingVelocity, ArrayList<Double> targetHeadings){
+    public PathOperator(ArrayList<Vector2D> followablePath, ArrayList<PathingVelocity> pathingVelocity, ArrayList<Double> targetHeadings){
         this.followablePath = followablePath;
         this.pathingVelocity = pathingVelocity;
         this.targetHeadings = targetHeadings;

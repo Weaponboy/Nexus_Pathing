@@ -1,6 +1,6 @@
 package dev.weaponboy.nexus_pathing.Follower;
 
-import dev.weaponboy.nexus_pathing.PathGeneration.pathBuilder;
+import dev.weaponboy.nexus_pathing.PathGeneration.PathBuilder;
 import dev.weaponboy.nexus_pathing.PathingUtility.PathingPower;
 import dev.weaponboy.nexus_pathing.PathingUtility.PathingVelocity;
 import dev.weaponboy.nexus_pathing.PathingUtility.RobotPower;
@@ -8,7 +8,7 @@ import dev.weaponboy.nexus_pathing.PathingUtility.PIDController;
 import dev.weaponboy.nexus_pathing.RobotUtilities.RobotConfig;
 import dev.weaponboy.nexus_pathing.RobotUtilities.Vector2D;
 
-public class follower {
+public class Follower {
 
     PIDController xerror;
     PIDController yerror;
@@ -68,11 +68,11 @@ public class follower {
 
     boolean extendoHeading = false;
 
-    pathOperator pathoperator;
+    PathOperator pathoperator;
 
     static RobotConfig config;
 
-    public follower(){
+    public Follower(){
         config = new RobotConfig();
         xerror = new PIDController(config.getX_P_PATH_COR(), 0, config.getX_D_PATH_COR());
         yerror = new PIDController(config.getY_P_PATH_COR(), 0, config.getY_D_PATH_COR());
@@ -82,7 +82,7 @@ public class follower {
         smallHeadingPID = new PIDController(config.getHEADING_P_SMALL(), 0, config.getHEADING_D_SMALL());
     }
 
-    public follower(RobotConfig customConfig){
+    public Follower(RobotConfig customConfig){
         config = customConfig;
         xerror = new PIDController(config.getX_P_PATH_COR(), 0, config.getX_D_PATH_COR());
         yerror = new PIDController(config.getY_P_PATH_COR(), 0, config.getY_D_PATH_COR());
@@ -110,10 +110,10 @@ public class follower {
 
     boolean usePathHeadings = false;
 
-    public void setPath(pathBuilder path){
+    public void setPath(PathBuilder path){
         pathFinished = false;
         forceStop = false;
-        pathoperator = new pathOperator(path.followablePath, path.pathingVelocity, path.headingTargets);
+        pathoperator = new PathOperator(path.followablePath, path.pathingVelocity, path.headingTargets);
     }
 
     public void resetClosestPoint(Vector2D robotPos){

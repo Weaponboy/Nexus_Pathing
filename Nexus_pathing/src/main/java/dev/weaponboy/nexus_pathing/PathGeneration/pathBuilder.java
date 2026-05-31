@@ -3,12 +3,12 @@ package dev.weaponboy.nexus_pathing.PathGeneration;
 import java.util.ArrayList;
 import java.util.List;
 
-import dev.weaponboy.nexus_pathing.PathGeneration.commands.sectionBuilder;
+import dev.weaponboy.nexus_pathing.PathGeneration.commands.SectionBuilder;
 import dev.weaponboy.nexus_pathing.PathingUtility.PathingVelocity;
 import dev.weaponboy.nexus_pathing.RobotUtilities.RobotConfig;
 import dev.weaponboy.nexus_pathing.RobotUtilities.Vector2D;
 
-public class pathBuilder {
+public class PathBuilder {
 
     private SegmentGenerator segmentGenerator = new SegmentGenerator();
 
@@ -24,11 +24,11 @@ public class pathBuilder {
 
     Vector2D secondPoint = new Vector2D();
 
-    public pathBuilder(RobotConfig robotConfig){
+    public PathBuilder(RobotConfig robotConfig){
         this.robotConfig = robotConfig;
     }
 
-    public void buildPath(sectionBuilder[] commands){
+    public void buildPath(SectionBuilder[] commands){
 
         for (int i = 0; i < commands.length; i++){
             commands[i].buildSection();
@@ -42,7 +42,7 @@ public class pathBuilder {
 
     }
 
-    public void buildPath(sectionBuilder[] commands, double customMaxAccel){
+    public void buildPath(SectionBuilder[] commands, double customMaxAccel){
 
         for (int i = 0; i < commands.length; i++){
             commands[i].buildSection();
