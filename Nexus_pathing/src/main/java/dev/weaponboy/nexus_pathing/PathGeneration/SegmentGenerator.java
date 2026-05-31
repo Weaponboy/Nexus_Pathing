@@ -7,13 +7,13 @@ import dev.weaponboy.nexus_pathing.RobotUtilities.Vector2D;
 
 public class SegmentGenerator {
 
-    static Vector2D onTheCurve;
+    private Vector2D onTheCurve;
 
-    static ArrayList<Vector2D> Segment = new ArrayList<>();
+    private ArrayList<Vector2D> Segment = new ArrayList<>();
 
-    static ArrayList<Vector2D> curvaturePoints = new ArrayList<>();
+    private ArrayList<Vector2D> curvaturePoints = new ArrayList<>();
 
-    static double t = 0.0;
+    double t = 0.0;
 
     public ArrayList<Vector2D> copyPath(){
         return Segment;

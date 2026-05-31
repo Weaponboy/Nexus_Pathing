@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1113699c-ae65-4143-8515-455206253754" name="Changes" comment="Updated custom config files">
+    <list default="true" id="1113699c-ae65-4143-8515-455206253754" name="Changes" comment="Updated custom config files to actually reflect in the PID values">
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/Follower/follower.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/Follower/follower.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/PathGeneration/SegmentGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/PathGeneration/SegmentGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/PathGeneration/commands/buildPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/PathGeneration/commands/buildPath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/PathGeneration/commands/sectionBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/PathGeneration/commands/sectionBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/PathingUtility/PathingPoint.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +121,7 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_directory_selection&quot;: &quot;C:/Users/User/AndroidStudioProjects/Nexus_Pathing/Nexus_pathing/build/generated/res/resValues/debug&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/josha/Documents/Android studio Projects/Nexus_Pathing/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/josha/spring-petclinic&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Dependencies&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
@@ -175,14 +180,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1719423865938</updated>
-    </task>
-    <task id="LOCAL-00071" summary="v3.3.5 Speed up the pathing a bit as a test">
-      <option name="closed" value="true" />
-      <created>1735752929163</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1735752929163</updated>
     </task>
     <task id="LOCAL-00072" summary="v3.3.5 Speed up the pathing a bit as a test">
       <option name="closed" value="true" />
@@ -568,11 +565,18 @@
       <option name="project" value="LOCAL" />
       <updated>1761161107874</updated>
     </task>
-    <option name="localTasksCounter" value="120" />
+    <task id="LOCAL-00120" summary="Updated custom config files to actually reflect in the PID values">
+      <option name="closed" value="true" />
+      <created>1771003870712</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1771003870713</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="v1.0.6: Updating I end targeting, got real robot velocities" />
     <MESSAGE value="v2.0.3: Updating I end targeting, got real robot velocities" />
     <MESSAGE value="v2.0.8: Updating I end targeting, got real robot velocities" />
     <MESSAGE value="v3.0.8: Added path finished override, also added methods to return error to the end of the path" />
@@ -597,7 +601,8 @@
     <MESSAGE value="Add heading offset for the follow using path heading" />
     <MESSAGE value="Updated gradle version" />
     <MESSAGE value="Updated custom config files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated custom config files" />
+    <MESSAGE value="Updated custom config files to actually reflect in the PID values" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated custom config files to actually reflect in the PID values" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Nexus$TestingManager.ic" NAME="TestingManager Coverage Results" MODIFIED="1720002880041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

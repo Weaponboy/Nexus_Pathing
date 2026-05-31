@@ -1,7 +1,7 @@
 package dev.weaponboy.nexus_pathing.PathGeneration.commands;
 
 @FunctionalInterface
-public interface sectionBuilder {
+public interface SectionBuilder {
 
     void buildSection();
 
