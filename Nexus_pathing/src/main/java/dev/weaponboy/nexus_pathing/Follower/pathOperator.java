@@ -8,6 +8,8 @@ import java.util.List;
 
 public class PathOperator {
 
+    private static final int searchWindow = 50;
+
     ArrayList<Vector2D> followablePath;
 
     ArrayList<PathingVelocity> pathingVelocity;
@@ -155,29 +157,29 @@ public class PathOperator {
 
     public int getRobotPositionOnPath(Vector2D robotPos) {
 
-        int index = 0;
-
+        int index = lastPointOnPath;
         double minDistance = Double.MAX_VALUE;
 
-        for (Vector2D pos : followablePath) {
+        int searchStart = lastPointOnPath;
+        int searchEnd   = Math.min(followablePath.size(), lastPointOnPath + searchWindow);
 
-            double distance = Math.sqrt(
-                    Math.pow(robotPos.getX() - pos.getX(), 2) +
-                            Math.pow(robotPos.getY() - pos.getY(), 2)
+        for (int i = searchStart; i < searchEnd; i++) {
+            Vector2D pos = followablePath.get(i);
+            double distance = Math.hypot(
+                    robotPos.getX() - pos.getX(),
+                    robotPos.getY() - pos.getY()
             );
-
             if (distance < minDistance) {
                 minDistance = distance;
-                index = followablePath.indexOf(pos);
+                index = i;
             }
-
         }
 
         lastPointOnPath = index;
 
-        if (index+10 > followablePath.size()-1){
+        if (index + 10 > followablePath.size() - 1) {
 
-        }else {
+        } else {
             index += 10;
         }
 
@@ -187,19 +189,17 @@ public class PathOperator {
     public int getRobotPositionOnPathFullPath(Vector2D robotPos) {
 
         int index = 0;
-
         double minDistance = Double.MAX_VALUE;
 
-        for (Vector2D pos : followablePath) {
-
-            double distance = Math.sqrt(
-                    Math.pow(robotPos.getX() - pos.getX(), 2) +
-                            Math.pow(robotPos.getY() - pos.getY(), 2)
+        for (int i = 0; i < followablePath.size(); i++) {
+            Vector2D pos = followablePath.get(i);
+            double distance = Math.hypot(
+                    robotPos.getX() - pos.getX(),
+                    robotPos.getY() - pos.getY()
             );
-
             if (distance < minDistance) {
                 minDistance = distance;
-                index = followablePath.indexOf(pos);
+                index = i;
             }
         }
 

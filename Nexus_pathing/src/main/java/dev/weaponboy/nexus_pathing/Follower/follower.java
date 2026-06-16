@@ -92,8 +92,8 @@ public class Follower {
         smallHeadingPID = new PIDController(config.getHEADING_P_SMALL(), 0, config.getHEADING_D_SMALL());
     }
 
-    double yI = 0;
-    double xI = 0;
+    double yOvercomeFriction = 0;
+    double xOvercomeFriction = 0;
 
     double headingAddedIError = 0;
 
@@ -137,31 +137,31 @@ public class Follower {
         double XError = endPoint.getX() - X;
         double YError = endPoint.getY() - Y;
 
+        if (!isFinished() && Math.abs(XV) < 3 && Math.abs(YV) < 3) {
+            xOvercomeFriction += getOvercomeFrictionValue(XError);
+            yOvercomeFriction += getOvercomeFrictionValue(YError);
+        } else {
+            xOvercomeFriction = 0;
+            yOvercomeFriction = 0;
+        }
+
         if (pathFinished){
 
             if (holdPosition){
-                if (Math.hypot(XError, YError) < 3) {
-                    correctiveXFinalAdjustment.setI(xI);
-                    correctiveYFinalAdjustment.setI(yI);
 
-                    double XErrorGlobal;
-                    double YErrorGlobal;
+                double xErrorToEnd;
+                double yErrorToEnd;
 
-                    if (disableGlobalFollowing){
-                        XErrorGlobal = XError;
-                        YErrorGlobal = YError;
-                    }else {
-                        XErrorGlobal = (YError) * Math.sin(Math.toRadians(H)) + (XError) * Math.cos(Math.toRadians(H));
-                        YErrorGlobal = (YError) * Math.cos(Math.toRadians(H)) - (XError) * Math.sin(Math.toRadians(H));
-                    }
-
-                    Xpower = correctiveXFinalAdjustment.calculate(XErrorGlobal);
-                    Ypower = correctiveYFinalAdjustment.calculate(YErrorGlobal);
-
-                } else {
-                    Xpower = 0;
-                    Ypower = 0;
+                if (disableGlobalFollowing){
+                    xErrorToEnd = XError + xOvercomeFriction;
+                    yErrorToEnd = YError + yOvercomeFriction;
+                }else {
+                    xErrorToEnd = (YError) * Math.sin(Math.toRadians(H)) + (XError) * Math.cos(Math.toRadians(H));
+                    yErrorToEnd = (YError) * Math.cos(Math.toRadians(H)) - (XError) * Math.sin(Math.toRadians(H));
                 }
+
+                Xpower = correctiveXFinalAdjustment.calculate(xErrorToEnd);
+                Ypower = correctiveYFinalAdjustment.calculate(yErrorToEnd);
             }else {
                 Xpower = 0;
                 Ypower = 0;
@@ -169,33 +169,14 @@ public class Follower {
 
         }else {
 
-            if (!isFinished() && Math.abs(XV) < 3 && Math.abs(YV) < 3) {
-                if (Math.abs(XV) < 3 && Math.abs(XError) > 1) {
-                    xI += 0.002;
-                } else {
-                    xI = 0;
-                }
-
-                if (Math.abs(YV) < 3 && Math.abs(YError) > 1) {
-                    yI += 0.002;
-                } else {
-                    yI = 0;
-                }
-            } else {
-                xI = 0;
-                yI = 0;
-            }
-
             if (Math.hypot(XError, YError) < 3) {
-                correctiveXFinalAdjustment.setI(xI);
-                correctiveYFinalAdjustment.setI(yI);
 
                 double XErrorGlobal;
                 double YErrorGlobal;
 
                 if (disableGlobalFollowing){
-                    XErrorGlobal = XError;
-                    YErrorGlobal = YError;
+                    XErrorGlobal = XError + xOvercomeFriction;
+                    YErrorGlobal = YError + yOvercomeFriction;
                 }else {
                     XErrorGlobal = (YError) * Math.sin(Math.toRadians(H)) + (XError) * Math.cos(Math.toRadians(H));
                     YErrorGlobal = (YError) * Math.cos(Math.toRadians(H)) - (XError) * Math.sin(Math.toRadians(H));
@@ -300,9 +281,6 @@ public class Follower {
             headingAddedIError = 0;
         }
 
-//        smallHeadingPID.setI(headingI);
-//        largeHeadingPID.setI(headingI);
-
         if (rotdist < -180) {
             rotdist = (360 + rotdist);
         } else if (rotdist > 180) {
@@ -356,11 +334,8 @@ public class Follower {
         double xDist = error.getX();
         double yDist = error.getY();
 
-        xerror.setI(xI);
-        yerror.setI(yI);
-
-        double xPowerC = xerror.calculate(xDist);
-        double yPowerC = yerror.calculate(yDist);
+        double xPowerC = xerror.calculate(xDist + xOvercomeFriction);
+        double yPowerC = yerror.calculate(yDist + yOvercomeFriction);
 
         double relativeXCorrective;
         double relativeYCorrective;
@@ -414,20 +389,16 @@ public class Follower {
 
         error = new Vector2D( targetPos.getX() - robotPos.getX(),  targetPos.getY() - robotPos.getY());
 
-        double xDist = error.getX();
-        double yDist = error.getY();
+        if (!isFinished() && Math.abs(XVelocity) < 3 && Math.abs(YVelocity) < 3) {
+            xOvercomeFriction += getOvercomeFrictionValue(error.getX());
+            yOvercomeFriction += getOvercomeFrictionValue(error.getY());
+        } else {
+            xOvercomeFriction = 0;
+            yOvercomeFriction = 0;
+        }
 
-//        if (xDist > 2 && Math.abs(XVelocity) < 3){
-//            xDist += 0.2;
-//        } else if (xDist < -2 && Math.abs(XVelocity) < 3) {
-//            xDist -= 0.2;
-//        }
-//
-//        if (yDist > 2 && Math.abs(YVelocity) < 3){
-//            yDist += 0.2;
-//        } else if (yDist < -2 && Math.abs(YVelocity) < 3) {
-//            yDist -= 0.2;
-//        }
+        double xDist = error.getX() + xOvercomeFriction;
+        double yDist = error.getY() + yOvercomeFriction;
 
         double robotRelativeXError = yDist * Math.sin(Math.toRadians(heading)) + xDist * Math.cos(Math.toRadians(heading));
         double robotRelativeYError = yDist * Math.cos(Math.toRadians(heading)) - xDist * Math.sin(Math.toRadians(heading));
@@ -438,6 +409,16 @@ public class Follower {
         correctivePower.set(xPower, yPower);
 
         return correctivePower;
+    }
+
+    private double getOvercomeFrictionValue(double error){
+        if (error > 1) {
+            return -1;
+        }else if (error < -1) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     public double getPathLength(){

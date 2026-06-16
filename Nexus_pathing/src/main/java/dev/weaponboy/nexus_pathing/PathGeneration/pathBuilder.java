@@ -58,8 +58,7 @@ public class PathBuilder {
 
     private void smoothPath(ArrayList<Vector2D> originalPath){
 
-        Vector2D onTheCurve = new Vector2D();
-
+        Vector2D onTheCurve;
         followablePath.clear();
 
         int oldindex = 0;
