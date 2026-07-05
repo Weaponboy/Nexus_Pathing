@@ -12,8 +12,8 @@ PathsManager pathsManager = new PathsManager();
 pathsManager.addNewPath("scorePath");
 
 SectionBuilder[] sections = new SectionBuilder[]{
-    () -> pathsManager.addPoints(new Vector2D(0, 0), new Vector2D(24, 24)),
-    () -> pathsManager.addPoints(new Vector2D(24, 24), new Vector2D(30, 10), new Vector2D(48, 48))
+        () -> pathsManager.addPoints(new Vector2D(0, 0), new Vector2D(24, 24)),
+        () -> pathsManager.addPoints(new Vector2D(24, 24), new Vector2D(30, 10), new Vector2D(48, 48))
 };
 pathsManager.buildPath(sections, "scorePath");
 
@@ -38,8 +38,8 @@ Handles creating, building, and storing multiple named paths.
 
 ```java
 SectionBuilder[] sections = new SectionBuilder[]{
-    () -> pathsManager.addPoints(new Vector2D(0, 0), new Vector2D(24, 24)),
-    () -> pathsManager.addPoints(new Vector2D(24, 24), new Vector2D(48, 0))
+        () -> pathsManager.addPoints(new Vector2D(0, 0), new Vector2D(24, 24)),
+        () -> pathsManager.addPoints(new Vector2D(24, 24), new Vector2D(48, 0))
 };
 ```
 
@@ -54,50 +54,23 @@ Passing this array into `buildPath(...)` runs each lambda in order (adding all t
 
 ### Methods
 
-**`addNewPath(String pathName)`**
-Registers a new, empty path under `pathName` and makes it the current path.
-
-**`addNewPath(String pathName, SectionBuilder[] pathSections)`**
-Registers a new path under `pathName` and immediately builds it from `pathSections`.
-
-**`buildPath(SectionBuilder[] pathSections, String pathName)`**
-Builds an already-registered path (found by name) from the given sections.
-
-**`buildPath(SectionBuilder[] pathSections, String pathName, double newAccelMax)`**
-Same as above, but overrides the max acceleration used for the motion profile.
-
-**`buildPath(SectionBuilder[] pathSections)`**
-Builds the *current* path from the given sections.
-
-**`buildPath(SectionBuilder[] pathSections, double newAccelMax)`**
-Builds the current path from the given sections, with a custom max acceleration.
-
-**`addPoints(Vector2D start, Vector2D end)`**
-Adds a straight-line segment to the current path.
-
-**`addPoints(Vector2D start, Vector2D control, Vector2D end)`**
-Adds a quadratic Bézier curve segment to the current path.
-
-**`addPoints(Vector2D start, Vector2D control1, Vector2D control2, Vector2D end)`**
-Adds a cubic Bézier curve segment to the current path.
-
-**`getCurrentPath()`**
-Returns the name of the currently selected path.
-
-**`setCurrentPath(String currentPath)`**
-Switches the active path to an already-registered path by name. Does nothing if the name doesn't exist.
-
-**`returnPathingPoints()`** / **`returnPathingPoints(String pathName)`**
-Returns the list of `Vector2D` points that make up the followable path (current path, or the named one — the named version also switches the current path).
-
-**`returnVectorField()`** / **`returnVectorField(String pathName)`**
-Returns the list of `PathingVelocity` values (the motion profile) for the path.
-
-**`returnPath(String pathName)`**
-Returns the raw `PathBuilder` object for a named path.
-
-**`returnCurrentPath()`**
-Returns the raw `PathBuilder` object for the current path. This is what you pass into `Follower.setPath(...)`.
+| Method | Description |
+|---|---|
+| `addNewPath(String pathName)` | Registers a new, empty path under `pathName` and makes it the current path. |
+| `addNewPath(String pathName, SectionBuilder[] pathSections)` | Registers a new path under `pathName` and immediately builds it from `pathSections`. |
+| `buildPath(SectionBuilder[] pathSections, String pathName)` | Builds an already-registered path (found by name) from the given sections. |
+| `buildPath(SectionBuilder[] pathSections, String pathName, double newAccelMax)` | Same as above, but overrides the max acceleration used for the motion profile. |
+| `buildPath(SectionBuilder[] pathSections)` | Builds the *current* path from the given sections. |
+| `buildPath(SectionBuilder[] pathSections, double newAccelMax)` | Builds the current path from the given sections, with a custom max acceleration. |
+| `addPoints(Vector2D start, Vector2D end)` | Adds a straight-line segment to the current path. |
+| `addPoints(Vector2D start, Vector2D control, Vector2D end)` | Adds a quadratic Bézier curve segment to the current path. |
+| `addPoints(Vector2D start, Vector2D control1, Vector2D control2, Vector2D end)` | Adds a cubic Bézier curve segment to the current path. |
+| `getCurrentPath()` | Returns the name of the currently selected path. |
+| `setCurrentPath(String currentPath)` | Switches the active path to an already-registered path by name. Does nothing if the name doesn't exist. |
+| `returnPathingPoints()` / `returnPathingPoints(String pathName)` | Returns the list of `Vector2D` points that make up the followable path (current path, or the named one — the named version also switches the current path). |
+| `returnVectorField()` / `returnVectorField(String pathName)` | Returns the list of `PathingVelocity` values (the motion profile) for the path. |
+| `returnPath(String pathName)` | Returns the raw `PathBuilder` object for a named path. |
+| `returnCurrentPath()` | Returns the raw `PathBuilder` object for the current path. This is what you pass into `Follower.setPath(...)`. |
 
 ---
 
@@ -114,26 +87,22 @@ Drives the robot along a path built by `PathsManager`, using PID correction. Cal
 
 ### Setup / Setting a Path
 
-**`setPath(PathBuilder path)`**
-Loads a new path to follow (get this from `pathsManager.returnCurrentPath()` or `returnPath(name)`). Resets the finished/stopped state.
+| Method | Description |
+|---|---|
+| `setPath(PathBuilder path)` | Loads a new path to follow (get this from `pathsManager.returnCurrentPath()` or `returnPath(name)`). Resets the finished/stopped state. |
 
 ### Main Loop Method
 
-**`followPathAuto(double targetHeading, double H, double X, double Y, double XV, double YV)`**
-Call this every loop cycle. Computes drive power to follow the current path.
-- `targetHeading` — heading to hold if `usePathHeadings` is disabled.
-- `H` — robot's current heading (degrees).
-- `X`, `Y` — robot's current field position.
-- `XV`, `YV` — robot's current field velocity.
-- Returns a `RobotPower` with the motor outputs to apply: `getVertical()` (forward/back), `getHorizontal()` (strafe), and `getPivot()` (turn).
+| Method | Description |
+|---|---|
+| `followPathAuto(double targetHeading, double H, double X, double Y, double XV, double YV)` | Call this every loop cycle. Computes drive power to follow the current path. `targetHeading` is the heading to hold if `usePathHeadings` is disabled; `H` is the robot's current heading (degrees); `X`/`Y` are the robot's current field position; `XV`/`YV` are the robot's current field velocity. Returns a `RobotPower` with the motor outputs to apply: `getVertical()` (forward/back), `getHorizontal()` (strafe), and `getPivot()` (turn). |
 
 ### Standalone Helpers
 
-**`getTurnPower(double targetHeading, double currentHeading, double Xvelo, double Yvelo)`**
-Computes turning power to rotate toward `targetHeading`. Can be used outside of `followPathAuto` if you just need heading correction.
-
-**`pidToPoint(Vector2D robotPos, Vector2D targetPos, double heading, double XVelocity, double YVelocity)`**
-Runs a PID correction directly toward a single target point (bypasses path following). Returns a `PathingPower`.
+| Method | Description |
+|---|---|
+| `getTurnPower(double targetHeading, double currentHeading, double Xvelo, double Yvelo)` | Computes turning power to rotate toward `targetHeading`. Can be used outside of `followPathAuto` if you just need heading correction. |
+| `pidToPoint(Vector2D robotPos, Vector2D targetPos, double heading, double XVelocity, double YVelocity)` | Runs a PID correction directly toward a single target point (bypasses path following). Returns a `PathingPower`. |
 
 ### Toggles / Configuration
 
@@ -151,38 +120,19 @@ Runs a PID correction directly toward a single target point (bypasses path follo
 
 ### Path Progress & Error Checking
 
-**`resetClosestPoint(Vector2D robotPos)`**
-Forces a full-path search to re-find the closest point on the path to `robotPos`. Useful if the robot's position jumps unexpectedly.
-
-**`createNewPathOperator(PathBuilder path)`**
-Lower-level version of `setPath(...)` — builds the internal path-tracking object without resetting the finished/stopped flags. Prefer `setPath(...)` in normal use.
-
-**`clipLookAheadIndex(int index)`**
-Clamps `index` to a valid index into the path's heading list, and stores it for use by `calculateTargetHeading()`.
-
-**`calculateTargetHeading()`**
-Returns the target heading (degrees) at the current look-ahead index, plus any configured offsets.
-
-**`finishPath()`**
-Manually marks the current path as finished and locks in the current position as the hold point.
-
-**`isFinished()`**
-Returns `true` if the robot is within 1 unit of the path's end point (in both X and Y), or if the path has already been marked finished.
-
-**`isFinished(double xTolerance, double yTolerance)`**
-Same as above, but with custom tolerances. Also marks the path as finished the first time the tolerance is met.
-
-**`getErrorToEnd()`**
-Returns the straight-line distance from the robot's current position to the path's end point.
-
-**`getXError()`** / **`getYError()`**
-Returns the absolute X / Y distance from the robot to the path's end point.
-
-**`getErrorToPointOnPath(double currentX, double currentY)`**
-Returns the `Vector2D` error (end point minus given position).
-
-**`getErrorToPath()`**
-Finds the robot's closest point on the path and returns the `Vector2D` error between the robot and that point. Also updates internal tracking state used elsewhere by the follower.
+| Method | Description |
+|---|---|
+| `resetClosestPoint(Vector2D robotPos)` | Forces a full-path search to re-find the closest point on the path to `robotPos`. Useful if the robot's position jumps unexpectedly. |
+| `createNewPathOperator(PathBuilder path)` | Lower-level version of `setPath(...)` — builds the internal path-tracking object without resetting the finished/stopped flags. Prefer `setPath(...)` in normal use. |
+| `clipLookAheadIndex(int index)` | Clamps `index` to a valid index into the path's heading list, and stores it for use by `calculateTargetHeading()`. |
+| `calculateTargetHeading()` | Returns the target heading (degrees) at the current look-ahead index, plus any configured offsets. |
+| `finishPath()` | Manually marks the current path as finished and locks in the current position as the hold point. |
+| `isFinished()` | Returns `true` if the robot is within 1 unit of the path's end point (in both X and Y), or if the path has already been marked finished. |
+| `isFinished(double xTolerance, double yTolerance)` | Same as above, but with custom tolerances. Also marks the path as finished the first time the tolerance is met. |
+| `getErrorToEnd()` | Returns the straight-line distance from the robot's current position to the path's end point. |
+| `getXError()` / `getYError()` | Returns the absolute X / Y distance from the robot to the path's end point. |
+| `getErrorToPointOnPath(double currentX, double currentY)` | Returns the `Vector2D` error (end point minus given position). |
+| `getErrorToPath()` | Finds the robot's closest point on the path and returns the `Vector2D` error between the robot and that point. Also updates internal tracking state used elsewhere by the follower. |
 
 ---
 
