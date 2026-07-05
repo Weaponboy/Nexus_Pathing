@@ -41,33 +41,33 @@ public class RobotConfig {
 
     public RobotConfig() {}
 
-    public RobotConfig(double X_P_END_COR, double X_D_END_COR, double Y_P_END_COR, double Y_D_END_COR, double X_P_PATH_COR, double X_D_PATH_COR, double Y_P_PATH_COR, double Y_D_PATH_COR, double HEADING_P_LARGE, double HEADING_D_LARGE, double HEADING_P_SMALL, double HEADING_D_SMALL, double MAX_X_VELOCITY, double MAX_Y_VELOCITY, double MAX_X_ACCELERATION, double MAX_Y_ACCELERATION) {
-
-        this.X_P_END_COR = X_P_END_COR;
-        this.X_D_END_COR = X_D_END_COR;
-
-        this.Y_P_END_COR = Y_P_END_COR;
-        this.Y_D_END_COR = Y_D_END_COR;
-
-        this.X_P_PATH_COR = X_P_PATH_COR;
-        this.X_D_PATH_COR = X_D_PATH_COR;
-
-        this.Y_P_PATH_COR = Y_P_PATH_COR;
-        this.Y_D_PATH_COR = Y_D_PATH_COR;
-
-        this.HEADING_P_LARGE = HEADING_P_LARGE;
-        this.HEADING_D_LARGE = HEADING_D_LARGE;
-
-        this.HEADING_P_SMALL = HEADING_P_SMALL;
-        this.HEADING_D_SMALL = HEADING_D_SMALL;
-
-        this.MAX_X_VELOCITY = MAX_X_VELOCITY;
-        this.MAX_Y_VELOCITY = MAX_Y_VELOCITY;
-
-        this.MAX_X_ACCELERATION = MAX_X_ACCELERATION;
-        this.MAX_Y_ACCELERATION = MAX_Y_ACCELERATION;
-
-    }
+//    public RobotConfig(double X_P_END_COR, double X_D_END_COR, double Y_P_END_COR, double Y_D_END_COR, double X_P_PATH_COR, double X_D_PATH_COR, double Y_P_PATH_COR, double Y_D_PATH_COR, double HEADING_P_LARGE, double HEADING_D_LARGE, double HEADING_P_SMALL, double HEADING_D_SMALL, double MAX_X_VELOCITY, double MAX_Y_VELOCITY, double MAX_X_ACCELERATION, double MAX_Y_ACCELERATION) {
+//
+//        this.X_P_END_COR = X_P_END_COR;
+//        this.X_D_END_COR = X_D_END_COR;
+//
+//        this.Y_P_END_COR = Y_P_END_COR;
+//        this.Y_D_END_COR = Y_D_END_COR;
+//
+//        this.X_P_PATH_COR = X_P_PATH_COR;
+//        this.X_D_PATH_COR = X_D_PATH_COR;
+//
+//        this.Y_P_PATH_COR = Y_P_PATH_COR;
+//        this.Y_D_PATH_COR = Y_D_PATH_COR;
+//
+//        this.HEADING_P_LARGE = HEADING_P_LARGE;
+//        this.HEADING_D_LARGE = HEADING_D_LARGE;
+//
+//        this.HEADING_P_SMALL = HEADING_P_SMALL;
+//        this.HEADING_D_SMALL = HEADING_D_SMALL;
+//
+//        this.MAX_X_VELOCITY = MAX_X_VELOCITY;
+//        this.MAX_Y_VELOCITY = MAX_Y_VELOCITY;
+//
+//        this.MAX_X_ACCELERATION = MAX_X_ACCELERATION;
+//        this.MAX_Y_ACCELERATION = MAX_Y_ACCELERATION;
+//
+//    }
 
     public double getX_P_END_COR() {
         return X_P_END_COR;
@@ -139,6 +139,50 @@ public class RobotConfig {
 
     public void logDebugging(boolean logDebugging) {
         this.logDebugging = logDebugging;
+    }
+
+    public RobotConfig setXLastAdjustmentPD(double p, double d) {
+        X_P_END_COR = p;
+        X_D_END_COR = d;
+        return this;
+    }
+
+    public RobotConfig setYLastAdjustmentPD(double p, double d) {
+        Y_P_END_COR = p;
+        Y_D_END_COR = d;
+        return this;
+    }
+
+    public RobotConfig setXOnPathPD(double p, double d) {
+        X_P_PATH_COR = p;
+        X_D_PATH_COR = d;
+        return this;
+    }
+
+    public RobotConfig setYOnPathPD(double p, double d) {
+        Y_P_PATH_COR = p;
+        Y_D_PATH_COR = d;
+        return this;
+    }
+
+    public RobotConfig setFastHeadingPD(double p, double d) {
+        this.HEADING_P_LARGE = p;
+        this.HEADING_D_LARGE = d;
+        return this;
+    }
+
+    public RobotConfig setSlowHeadingPD(double p, double d) {
+        this.HEADING_P_SMALL = p;
+        this.HEADING_D_SMALL = d;
+        return this;
+    }
+
+    public RobotConfig setRobotConstants(double maxXVelocity, double maxYVelocity, double maxXAcceleration, double maxYAcceleration) {
+        this.MAX_X_VELOCITY = maxXVelocity;
+        this.MAX_Y_VELOCITY = maxYVelocity;
+        this.MAX_X_ACCELERATION = maxXAcceleration;
+        this.MAX_Y_ACCELERATION = maxYAcceleration;
+        return this;
     }
 
 }
