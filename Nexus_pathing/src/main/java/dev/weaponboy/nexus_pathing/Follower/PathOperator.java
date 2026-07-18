@@ -160,8 +160,8 @@ public class PathOperator {
         int index = lastPointOnPath;
         double minDistance = Double.MAX_VALUE;
 
-        int searchStart = lastPointOnPath;
-        int searchEnd   = Math.min(followablePath.size(), lastPointOnPath + searchWindow);
+        int searchStart = Math.max(0, lastPointOnPath - (int)(searchWindow * 0.2));
+        int searchEnd   = Math.min(followablePath.size(), (lastPointOnPath + (int)(searchWindow*0.8)));
 
         for (int i = searchStart; i < searchEnd; i++) {
             Vector2D pos = followablePath.get(i);

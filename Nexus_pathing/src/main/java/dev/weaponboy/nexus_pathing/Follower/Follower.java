@@ -1,5 +1,7 @@
 package dev.weaponboy.nexus_pathing.Follower;
 
+import android.util.Range;
+
 import dev.weaponboy.nexus_pathing.PathGeneration.PathBuilder;
 import dev.weaponboy.nexus_pathing.PathingUtility.PathingPower;
 import dev.weaponboy.nexus_pathing.PathingUtility.PathingVelocity;
@@ -62,6 +64,16 @@ public class Follower extends FollowerBaseMethods{
     public void setPath(PathBuilder path){
         pathFinished = false;
         forceStop = false;
+        currentIndex = 0;
+        xErrorToOvercomeFriction = 0;
+        yErrorToOvercomeFriction = 0;
+        addedHeadingErrorToOvercomeFriction = 0;
+        onPathYPID.reset();
+        onPathXPID.reset();
+        finalAdjustmentXPID.reset();
+        finalAdjustmentYPID.reset();
+        fastHeadingPID.reset();
+        slowHeadingPID.reset();
         createNewPathOperator(path);
     }
 
@@ -156,6 +168,12 @@ public class Follower extends FollowerBaseMethods{
 
         double rotdist = (targetHeading - currentHeading);
 
+        if (rotdist < -180) {
+            rotdist = (360 + rotdist);
+        } else if (rotdist > 180) {
+            rotdist = (rotdist - 360);
+        }
+
         if (useHeadingFrictionError){
             if (rotdist > 0 && Math.abs(Xvelo) < 3 && Math.abs(Yvelo) < 3){
                 addedHeadingErrorToOvercomeFriction += 0.4;
@@ -168,13 +186,15 @@ public class Follower extends FollowerBaseMethods{
             addedHeadingErrorToOvercomeFriction = 0;
         }
 
+        addedHeadingErrorToOvercomeFriction = Math.min(10, Math.max(-10, addedHeadingErrorToOvercomeFriction));
+
+        rotdist += addedHeadingErrorToOvercomeFriction;
+
         if (rotdist < -180) {
             rotdist = (360 + rotdist);
         } else if (rotdist > 180) {
             rotdist = (rotdist - 360);
         }
-
-        rotdist += addedHeadingErrorToOvercomeFriction;
 
         if (slowerHeading){
             turnPower = slowHeadingPID.calculate(-rotdist);
@@ -250,7 +270,7 @@ public class Follower extends FollowerBaseMethods{
         double vertical = kxfull * relativeXVelo;
         double horizontal = kyfull * relativeYVelo;
 
-        if(horizontal > 1){
+        if(Math.abs(horizontal) > 1){
             vertical = kx * relativeXVelo;
             horizontal = ky * relativeYVelo;
         }

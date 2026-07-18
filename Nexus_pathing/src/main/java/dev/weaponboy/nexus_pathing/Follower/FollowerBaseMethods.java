@@ -12,7 +12,7 @@ public class FollowerBaseMethods {
      * Helper class objects
      * */
     private PathOperator pathoperator;
-    static RobotConfig config;
+    RobotConfig config;
 
     /**
      * PID controllers
@@ -95,7 +95,7 @@ public class FollowerBaseMethods {
 
     public boolean isFinished(){
         Vector2D error = getErrorToPointOnPath(robotPositionVector.getX(), robotPositionVector.getY());
-        return error.getX() < 1 && error.getY() < 1 || pathFinished;
+        return  Math.abs(error.getX()) < 1 &&  Math.abs(error.getY()) < 1 || pathFinished;
     }
 
     public boolean isFinished(double xTolerance, double yTolerance){
@@ -104,7 +104,7 @@ public class FollowerBaseMethods {
             pathFinished = true;
             forceStopPoint = robotPositionVector;
         }
-        return error.getX() < xTolerance && error.getY() < yTolerance || pathFinished;
+        return  Math.abs(error.getX()) < xTolerance && Math.abs(error.getY()) < yTolerance || pathFinished;
     }
 
     public double getErrorToEnd(){
@@ -124,14 +124,14 @@ public class FollowerBaseMethods {
 
     public Vector2D getErrorToPointOnPath(double currentX, double currentY){
         Vector2D endPoint = pathoperator.getPointOnFollowable(pathoperator.getLastPoint());
-        double XError = endPoint.getX() - currentX;
-        double YError = endPoint.getY() - currentY;
+        double XError = (endPoint.getX() - currentX);
+        double YError = (endPoint.getY() - currentY);
         return new Vector2D(XError, YError);
     }
 
     public Vector2D getErrorToPath(){
         currentIndex = pathoperator.getRobotPositionOnPath(robotPositionVector);
-        pathoperator.getTargetVelocity(currentIndex);
+        targetVelocity = pathoperator.getTargetVelocity(currentIndex);
         return pathoperator.getErrorToPath(robotPositionVector, currentIndex);
     }
 

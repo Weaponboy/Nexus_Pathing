@@ -368,6 +368,7 @@ public class PathBuilder {
         followablePath.clear();
         bezierPoints.clear();
         pathingVelocity.clear();
+        headingTargets.clear();
     }
 
 }
