@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1113699c-ae65-4143-8515-455206253754" name="Changes" comment="Updated readme with method tables">
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/Follower/Follower.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/Follower/Follower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/Follower/FollowerBaseMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/Follower/FollowerBaseMethods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/Follower/PathOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/Follower/PathOperator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/PathGeneration/PathBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nexus_pathing/src/main/java/dev/weaponboy/nexus_pathing/PathGeneration/PathBuilder.java" afterDir="false" />
-    </list>
+    <list default="true" id="1113699c-ae65-4143-8515-455206253754" name="Changes" comment="Fixed velocity setting problem and small other logic issue" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -261,14 +253,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1719423865938</updated>
-    </task>
-    <task id="LOCAL-00081" summary="Added Integral into heading PID's">
-      <option name="closed" value="true" />
-      <created>1736923646266</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1736923646266</updated>
     </task>
     <task id="LOCAL-00082" summary="Added Integral into heading PID's">
       <option name="closed" value="true" />
@@ -654,7 +638,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783798778121</updated>
     </task>
-    <option name="localTasksCounter" value="130" />
+    <task id="LOCAL-00130" summary="Fixed velocity setting problem and small other logic issue">
+      <option name="closed" value="true" />
+      <created>1784363650938</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1784363650938</updated>
+    </task>
+    <option name="localTasksCounter" value="131" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -669,7 +661,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="v3.1.3: tuning end corrective PIDs" />
     <MESSAGE value="v3.1.4: tuning end corrective PIDs" />
     <MESSAGE value="v3.1.5: tuning end corrective PIDs" />
     <MESSAGE value="v3.1.5: heading method public" />
@@ -694,7 +685,8 @@
     <MESSAGE value="Created and added a README.md file to explain how to use the new methods" />
     <MESSAGE value="Moved readme location" />
     <MESSAGE value="Updated readme with method tables" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated readme with method tables" />
+    <MESSAGE value="Fixed velocity setting problem and small other logic issue" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed velocity setting problem and small other logic issue" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Nexus$TestingManager.ic" NAME="TestingManager Coverage Results" MODIFIED="1720002880041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

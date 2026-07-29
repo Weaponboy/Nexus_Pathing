@@ -100,7 +100,7 @@ public class FollowerBaseMethods {
 
     public boolean isFinished(double xTolerance, double yTolerance){
         Vector2D error = getErrorToPointOnPath(robotPositionVector.getX(), robotPositionVector.getY());
-        if (!pathFinished && error.getX() < xTolerance && error.getY() < yTolerance){
+        if (!pathFinished && Math.abs(error.getX()) < xTolerance && Math.abs(error.getY()) < yTolerance){
             pathFinished = true;
             forceStopPoint = robotPositionVector;
         }
