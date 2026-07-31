@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1113699c-ae65-4143-8515-455206253754" name="Changes" comment="Fixed velocity setting problem and small other logic issue" />
+    <list default="true" id="1113699c-ae65-4143-8515-455206253754" name="Changes" comment="Fixed velocity setting problem and small other logic issue">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -253,14 +255,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1719423865938</updated>
-    </task>
-    <task id="LOCAL-00082" summary="Added Integral into heading PID's">
-      <option name="closed" value="true" />
-      <created>1736924565215</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1736924565215</updated>
     </task>
     <task id="LOCAL-00083" summary="Added Integral into heading PID's">
       <option name="closed" value="true" />
@@ -646,7 +640,15 @@
       <option name="project" value="LOCAL" />
       <updated>1784363650938</updated>
     </task>
-    <option name="localTasksCounter" value="131" />
+    <task id="LOCAL-00131" summary="Fixed velocity setting problem and small other logic issue">
+      <option name="closed" value="true" />
+      <created>1785350757962</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1785350757962</updated>
+    </task>
+    <option name="localTasksCounter" value="132" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
