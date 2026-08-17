@@ -174,27 +174,27 @@ public class Follower extends FollowerBaseMethods{
             rotdist = (rotdist - 360);
         }
 
-//        if (useHeadingFrictionError){
-//            if (rotdist > 0 && Math.abs(Xvelo) < 3 && Math.abs(Yvelo) < 3){
-//                addedHeadingErrorToOvercomeFriction += 0.4;
-//            }else if (rotdist < 0 && Math.abs(Xvelo) < 3 && Math.abs(Yvelo) < 3){
-//                addedHeadingErrorToOvercomeFriction -= 0.4;
-//            }else {
-//                addedHeadingErrorToOvercomeFriction = 0;
-//            }
-//        }else{
-//            addedHeadingErrorToOvercomeFriction = 0;
-//        }
-//
-//        addedHeadingErrorToOvercomeFriction = Math.min(10, Math.max(-10, addedHeadingErrorToOvercomeFriction));
-//
-//        rotdist += addedHeadingErrorToOvercomeFriction;
-//
-//        if (rotdist < -180) {
-//            rotdist = (360 + rotdist);
-//        } else if (rotdist > 180) {
-//            rotdist = (rotdist - 360);
-//        }
+        if (useHeadingFrictionError){
+            if (rotdist > 0 && Math.abs(Xvelo) < 3 && Math.abs(Yvelo) < 3){
+                addedHeadingErrorToOvercomeFriction += 0.4;
+            }else if (rotdist < 0 && Math.abs(Xvelo) < 3 && Math.abs(Yvelo) < 3){
+                addedHeadingErrorToOvercomeFriction -= 0.4;
+            }else {
+                addedHeadingErrorToOvercomeFriction = 0;
+            }
+        }else{
+            addedHeadingErrorToOvercomeFriction = 0;
+        }
+
+        addedHeadingErrorToOvercomeFriction = Math.min(10, Math.max(-10, addedHeadingErrorToOvercomeFriction));
+
+        rotdist += addedHeadingErrorToOvercomeFriction;
+
+        if (rotdist < -180) {
+            rotdist = (360 + rotdist);
+        } else if (rotdist > 180) {
+            rotdist = (rotdist - 360);
+        }
 
         if (slowerHeading){
             turnPower = slowHeadingPID.calculate(-rotdist);
